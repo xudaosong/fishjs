@@ -1,0 +1,6 @@
+<div ng-controller="BusyDemoCtrl">
+    <button fs-busy="fetch()" class="btn btn-default" busy-text="loading">text</button>
+    <button fs-busy="fetch()" class="btn btn-default" busy-text="" busy-class="glyphicon glyphicon-refresh disabled">icon</button>
+    <a fs-busy="fetch()" class="btn btn-default" busy-class="disabled" busy-text="请求发送中...">from a</a>
+    <p><pre>调用次数：{{count}}</pre></p>
+</div>

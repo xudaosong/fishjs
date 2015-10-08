@@ -1,0 +1,79 @@
+<div class="bs-docs-section" ng-controller="ModalDemoCtrl">
+    <h2 id="modals-examples">Examples</h2>
+    <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+
+
+    <pre class="bs-example-scope">$scope.modal = {{modal | json}};</pre>
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+
+        <!-- Button to trigger a default modal with a scope as an object {title:'', content:'', etc.} -->
+        <button type="button" class="btn btn-lg btn-primary" data-animation="fs-zoom" data-placement="center" fs-modal="modal">Click to toggle modal
+            <br />
+            <small>(using an object)</small>
+        </button>
+
+        <!-- You can use a custom html template with the `data-template` attr -->
+        <button type="button" class="btn btn-lg btn-danger" data-animation="fs-bounce" data-template-url="modal.demo.tpl.html" fs-modal="modal">Custom Modal
+            <br />
+            <small>(using data-template)</small>
+        </button>
+
+        <!-- You can use a custom html template with the `data-template` attr -->
+        <button type="button" class="btn btn-lg btn-danger" ng-click="showModal()">Modal
+            <br />
+            <small>(using service)</small>
+        </button>
+        <hr/>
+        弹窗动画：<button type="button" class="btn btn-default" ng-model="animation"  fs-options="animation.name as animation.name for animation in animations" fs-select ng-change="showModal()">
+        </button>
+
+    </div>
+</div>
+<script type="text/ng-template" id="modal.demo.tpl.html">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" ng-show="title">
+                    <button type="button" class="close" ng-click="$hide()">&times;</button>
+                    <h4 class="modal-title" ng-bind-html="title"></h4>
+                </div>
+                <div class="modal-body" ng-show="content">
+
+                    <h4>Text in a modal</h4>
+                    <p ng-bind-html="content"></p>
+                    <pre>2 + 3 = {{ 2 + 3 }}</pre>
+
+                    <h4>Popover in a modal</h4>
+                    <p>This <a href="#" role="button" class="btn btn-default popover-test" data-title="A Title" data-content="And here's some amazing content. It's very engaging. right?" bs-popover>button</a> should trigger a popover on click.</p>
+
+                    <h4>Tooltips in a modal</h4>
+                    <p><a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>This link</a> and <a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>that link</a> should have tooltips on hover.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="modal.tpl.content.demo.html">
+    <div class="modal-inner-content">
+
+        <h4>Text in a modal</h4>
+        <p ng-bind-html="content"></p>
+        <pre>2 + 3 = {{ 2 + 3 }}</pre>
+
+        <h4>Popover in a modal</h4>
+        <p>This <a href="#" role="button" class="btn btn-default popover-test" data-title="A Title" data-content="And here's some amazing content. It's very engaging. right?" bs-popover>button</a> should trigger a popover on click.</p>
+
+        <h4>Tooltips in a modal</h4>
+        <p><a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>This link</a> and <a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>that link</a> should have tooltips on hover.</p>
+
+    </div>
+    <div class="modal-footer" style="margin: 15px -20px -20px;">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button>
+    </div>
+</script>

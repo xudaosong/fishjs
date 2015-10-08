@@ -1,0 +1,1 @@
+angular.module('fish.demo', ['ngSanitize', 'ngAnimate', 'ngMessages', 'fish', 'plunker']);

@@ -1,0 +1,17 @@
+<div class="bs-docs-section" ng-controller="TooltipDemoCtrl">
+    <!-- Markup for a default tooltip with a scope passed as an object {title:''} -->
+    <p>Tight pants next level keffiyeh <a href="" data-animation="am-flip-x" fs-tooltip="tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown.</p>
+
+    <div class="input-group col-xs-5">
+      <span class="input-group-btn">
+        <!-- You can also use data-attrs to assign scope variables -->
+        <button class="btn btn-primary" type="button" data-trigger="click" data-type="success" data-title="{{tooltip.title}}" fs-tooltip>Click me</button>
+      </span>
+        <input type="text" class="form-control" data-placement="right" data-type="info" data-container="body" placeholder="Focus to toggle tooltip" data-trigger="focus" fs-tooltip="tooltip">
+    </div>
+    <div class="checkbox">
+        <label data-placement="bottom-left" data-type="info" data-animation="am-fade-and-scale" fs-tooltip="tooltip" fs-enabled="tooltip.checked">
+            <input type="checkbox" ng-model="tooltip.checked" > Check me to enable my tooltip
+        </label>
+    </div>
+</div>

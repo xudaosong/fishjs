@@ -1,0 +1,38 @@
+<div class="bs-docs-section" ng-controller="TabDemoCtrl">
+
+    <button ng-click="tabs.activeTabasss='Last'">
+        Select "Last" tab
+    </button>
+    <button ng-click="toggleThirdTab()">
+        {{ tabs[2].disabled ? 'Enable' : 'Disable' }} 'About' tab
+    </button>
+
+    <div fs-active-pane="tabs.activeTabasss" fs-tabs data-nav-class="navClass" data-animation="fs-fade">
+        <div ng-repeat="tab in tabs" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" ng-bind="tab.content" fs-pane>
+        </div>
+    </div>
+    <div fs-tabs>
+        <div title="在读课程 <i>(12)</i>" fs-pane>
+            在读课程内容
+        </div>
+        <div title="已修课程" fs-pane>
+            已修课程内容
+        </div>
+    </div>
+</div>
+<style>
+    .navClass{border-bottom: 1px solid blue;
+    }
+    .navClass > li > a{
+        color:blue;margin-right: 2px;line-height: 1.42857143;border: 1px solid transparent;border-radius: 4px 4px 0 0;
+    }
+    .navClass > li{
+        float:left;margin-bottom: -1px;
+    }
+    .navClass .active{
+        display: block!important;
+    }
+    .navClass li.active > a{
+        color: brown;cursor: default;background-color: #fff;border: 1px solid brown;border-bottom-color: transparent;
+    }
+</style>

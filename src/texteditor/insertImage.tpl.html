@@ -1,0 +1,47 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" ng-bind="title"></h4>
+            </div>
+            <div class="modal-body">
+                <div fs-tabs>
+                    <div title="本地上传" fs-pane>
+                        <div fsf-drop fsf-select="uploadFiles($files)" class="drop-box" fsf-drag-over-class="dragover"
+                             fsf-multiple="true" fsf-allow-dir="true" accept="image/*,application/pdf"
+                             fsf-pattern="'image/*'" style="">
+                            拖放/单击这里上传图片
+                        </div>
+                        <div fsf-no-file-drop>该浏览器不支持文件拖放</div>
+                        <ul>
+                            <li ng-repeat="f in data.imageFiles"> {{f.name}} {{f.$error}} {{f.$errorParam}}
+                                <div class="progress" ng-show="f.progress >= 0">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100" style="width: {{f.progress}}%;"
+                                         ng-bind="f.progress + '%'"></div>
+                                </div>
+                                <img class="img-rounded img-responsive" fsf-src="f"></li>
+                        </ul>
+                    </div>
+                    <div title="网络图片" fs-pane>
+                        <form name="data.imageForm" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="imageUrl" class="col-sm-2 control-label">图片地址</label>
+                                <div class="col-sm-10">
+                                    <input type="url" ng-model="data.imageUrl" class="form-control" id="imageUrl" placeholder="图片地址">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="submit()">确定</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>

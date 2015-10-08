@@ -1,0 +1,28 @@
+<style>
+    .fsCarousel h3 {
+        background: #fff;
+        color: #3498db;
+        font-size: 36px;
+        line-height: 100px;
+        margin: 10px;
+        position: relative;
+        text-align: center;
+    }
+</style>
+<div class="fsCarousel" style="height:540px;margin:auto;padding:10px 30px;width:100%;background-color: #3498db;" ng-controller="CarouselDemoCtrl">
+    <fs-carousel>
+        <div ng-repeat="item in items">
+            <h3 ng-bind="item"></h3>
+        </div>
+    </fs-carousel>
+    <fs-carousel slides-to-show="3" slides-to-scroll="3" infinite="false">
+        <div ng-repeat="item in items">
+            <h3 ng-bind="item"></h3>
+        </div>
+    </fs-carousel>
+    <fs-carousel vertical="true" vertical-swiping="true">
+        <div ng-repeat="item in items">
+            <h3 ng-bind="item"></h3>
+        </div>
+    </fs-carousel>
+</div>

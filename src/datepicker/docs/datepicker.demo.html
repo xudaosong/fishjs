@@ -1,0 +1,38 @@
+<div class="bs-docs-section" ng-controller="DatepickerDemoCtrl">
+
+<div class="bs-example" style="padding-bottom: 24px;" append-source>
+    <form name="datepickerForm" class="form-horizontal" role="form">
+        <!-- Basic example -->
+        <div class="form-group" ng-class="{'has-error': datepickerForm.date.$invalid}">
+            <label class="col-sm-4 control-label"><i class="glyphicon glyphicon-calendar"></i> Date <small>(as date)</small></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="selectedDate" name="date" fs-datepicker>
+            </div>
+            <div class="col-sm-4">
+                <pre>{{selectedDate}}</pre>
+            </div>
+        </div>
+        <!-- Custom example -->
+        <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+            <label class="col-sm-4 control-label"><i class="glyphicon glyphicon-calendar"></i> Date <small>(as number)</small></label>
+            <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="selectedDateAsNumber" data-date-format="yyyy-MM-dd" data-date-type="number" data-min-date="02/10/86" data-max-date="today" data-autoclose="1" name="date2" fs-datepicker>
+            </div>
+            <div class="col-sm-4">
+                <pre>{{selectedDateAsNumber}}</pre>
+            </div>
+        </div>
+        <hr>
+        <!-- Date range example -->
+        <div class="form-group">
+            <label class="col-sm-5 control-label"><i class="glyphicon glyphicon-calendar"></i> <i class="glyphicon glyphicon-resize-horizontal"></i> <i class="glyphicon glyphicon-calendar"></i> Date range <small>(dynamic)</small></label>
+            <div class="col-sm-7 input-daterange input-group">
+                <input type="text" class="form-control" ng-model="fromDate"  data-max-date="{{untilDate}}" placeholder="起始日期" fs-datepicker>
+                <span class="input-group-addon">to</span>
+                <input type="text" class="form-control" ng-model="untilDate"  data-min-date="{{fromDate}}" placeholder="结束日期" fs-datepicker>
+            </div>
+        </div>
+        <p><pre>{{fromDate}} ~ {{untilDate}}</pre></p>
+    </form>
+</div>
+</div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>全国中职通用组件库</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/bower_components/textAngular/dist/textAngular.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-sass/bootstrap.css"/>
+    <link rel="stylesheet" href="misc/demo/assets/demo.css"/>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular.min.js"></script>
+    <script src="/bower_components/mathjax-2.5-latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+    <script src="/src/texteditor/texteditor.js"></script>
+
+</head>
+<body>
+<div class="fs-docs-wrapper" ng-fi>
+    <div class="fs-docs-header">
+        <div class="container">
+            <h1>Fish</h1>
+
+            <p>Fish是按产品风格定制组件的前端脚本库</p>
+        </div>
+    </div>
+    <div class="fs-docs-content container">
+        <!-- When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+         $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+
+         <p>
+             When
+             <math xmlns="http://www.w3.org/1998/Math/MathML">
+                 <mi>a</mi><mo>&#x2260;</mo><mn>0</mn>
+             </math>,
+             there are two solutions to
+             <math xmlns="http://www.w3.org/1998/Math/MathML">
+                 <mi>a</mi><msup><mi>x</mi><mn>2</mn></msup>
+                 <mo>+</mo> <mi>b</mi><mi>x</mi>
+                 <mo>+</mo> <mi>c</mi> <mo>=</mo> <mn>0</mn>
+             </math>
+             and they are
+             <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                 <mi>x</mi> <mo>=</mo>
+                 <mrow>
+                     <mfrac>
+                         <mrow>
+                             <mo>&#x2212;</mo>
+                             <mi>b</mi>
+                             <mo>&#x00B1;</mo>
+                             <msqrt>
+                                 <msup><mi>b</mi><mn>2</mn></msup>
+                                 <mo>&#x2212;</mo>
+                                 <mn>4</mn><mi>a</mi><mi>c</mi>
+                             </msqrt>
+                         </mrow>
+                         <mrow> <mn>2</mn><mi>a</mi> </mrow>
+                     </mfrac>
+                 </mrow>
+                 <mtext>.</mtext>
+             </math>
+         </p>-->
+
+        <p>When `a != 0`, there are two solutions to `ax^2 + bx + c = 0` and
+            they are</p>
+        <p style="text-align:center">
+            `x = (-b +- sqrt(b^2-4ac))/(2a)`
+        </p>
+        <p style="text-align:center">
+            `(x+y)/x+x-y/x+(x*y)/x+(x-y)/x`
+        </p>
+        <p style="text-align:center">
+            `sum_(i=1)^n i^3=((n(n+1))/2)^2`
+        </p>
+        <p style="text-align:center">
+            `int_0^1 f(x)dx*[[a,b],[c,d]]*((a,b),(c,d))`
+        </p>
+    </div>
+    <div text-angular ng-model="htmlContent" ></div>
+    <div>
+        <h3>HTML输出</h3>
+        <pre id="textEditorHtmlOutput" fs-mathjax-bind="htmlContent"></pre>
+    </div>
+    <footer class="fs-docs-footer">
+        <div class="container">
+            <p>版权所有：福建华渔教育科技有限公司 闽ICP备12022411号</p>
+
+            <p>Copyright ©2003-2015 www.fishjs.com All rights reserved</p>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

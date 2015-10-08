@@ -1,0 +1,69 @@
+<div class="bs-docs-section" ng-controller="PopoverDemoCtrl">
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+        <!-- Button to trigger a default popover with a scope as an object {title:'', content:'', etc.} -->
+        <button type="button" class="btn btn-primary" data-placement="bottom" data-animation="fs-flip-x" fs-popover="popover">
+            Click to toggle popover
+            <br />
+            <small>(using an object)</small>
+        </button>
+
+        <!-- You can also use data-attrs to assign scope variables -->
+        <button type="button" class="btn btn-primary" title="{{popover.title}}" data-placement="top"  data-content="{{popover.content}}"  data-trigger="foucs" fs-popover>
+            Click to toggle popover
+            <br />
+            <small>(using data-attrs)</small>
+        </button>
+
+        <!-- You can use a custom html template with the `data-template` attr -->
+        <button type="button" class="btn btn-danger" title="{{popover.title}}" data-placement="left" data-content="{{popover.content}}" data-template-url="popover.demo.tpl.html" data-animation="fs-flip-x" data-auto-close="1" fs-popover>
+            Custom Popover
+            <br />
+            <small>(using data-template)</small>
+        </button>
+        <hr/>
+        <!-- A popover can also be triggered programmatically using the $popover service -->
+        <button type="button" id="popover-as-service" class="btn btn-primary" title="{{popover.title}}" ng-click="togglePopover()">
+            Click to toggle popover
+            <br />
+            <small>(using $popover service)</small>
+        </button>
+    </div>
+</div>
+<script id="popover.demo.tpl.html" type="text/ng-template">
+    <div class="popover" tabindex="-1" ng-show="content">
+        <div class="arrow"></div>
+        <h3 class="popover-title" ng-bind-html="title" ng-show="title"></h3>
+        <div class="popover-content">
+            <form name="popoverForm">
+                <p ng-bind-html="content" style="min-width:300px;"></p>
+                <pre>2 + 3 = <span ng-cloak>{{ 2 + 3 }}</span></pre>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" type="email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="popover.saved=true;$hide()">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+<script id="popover-content.demo.tpl.html" type="text/ng-template">
+    <form name="popoverForm">
+        <p ng-bind-html="content" style="min-width:300px;"></p>
+        <pre>2 + 3 = <span ng-cloak>{{ 2 + 3 }}</span></pre>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">@</div>
+                <input class="form-control" type="email" placeholder="Enter email">
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="popover.saved=true;$hide()">Save changes</button>
+        </div>
+    </form>
+</script>

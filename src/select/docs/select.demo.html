@@ -1,0 +1,14 @@
+<div class="bs-docs-section" ng-controller="SelectDemoCtrl">
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+
+        <label>Single select:&nbsp;</label>
+        <button type="button" class="btn btn-default" ng-model="selectedIcon" data-html="1" fs-options="icon.value as icon.label for icon in icons" fs-select>
+            Action <span class="caret"></span>
+        </button>
+        <hr>
+        <label>Multiple select:&nbsp;</label>
+        <button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="fs-flip-x" fs-options="icon.value as icon.label for icon in icons" fs-select>
+            Action <span class="caret"></span>
+        </button>
+    </div>
+</div>

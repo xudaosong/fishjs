@@ -1,0 +1,262 @@
+<style>
+    .error-messages.ng-active {
+        background: maroon;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 15px;
+        position: relative;
+    }
+
+    .error-messages.ng-active:after {
+        position: absolute;
+        top: -10px;
+        content: "";
+        left: 20px;
+        border-style: solid;
+        border-color: transparent transparent maroon;
+        border-width: 5px;
+    }
+
+    /* .main-form input.ng-invalid.ng-touched {
+         background-color: #FA787E;
+     }
+
+     .main-form input.ng-valid.ng-touched {
+         background-color: #78FA89;
+     }*/
+</style>
+<form name="my_form" ng-controller="FormCtrl" ng-submit="submit()" novalidate>
+<div class="row">
+<div class="col-md-7">
+<div class="form-group has-feedback"
+     ng-class="{'has-error':my_form.username.$dirty && my_form.username.$invalid,'has-success':my_form.username.$dirty && my_form.username.$valid}">
+    <label for="input_username">用户名:</label>
+    <input class="form-control"
+           type="text"
+           name="username"
+           id="input_username"
+           ng-model="data.username"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-minlength="2"
+           ng-maxlength="10"
+           fs-realname-validation
+           fake-remote-record-validator="fakeUsernames"
+           required/>
+        <span ng-if="my_form.username.$dirty && my_form.username.$valid"
+              class="glyphicon glyphicon-ok form-control-feedback"></span>
+        <span ng-if="my_form.username.$dirty && my_form.username.$invalid"
+              class="glyphicon glyphicon-remove form-control-feedback"></span>
+
+    <div class="error-messages" ng-if="interacted(my_form.username)" ng-messages="my_form.username.$error">
+        <div ng-message="required">请输入用户名</div>
+        <div ng-message="minlength || maxlength">用户名必须在2~10个字之间</div>
+        <div ng-message="fsRealnameValidation">用户名必须是中英文字符</div>
+        <div ng-message="record-loading">正在检查用户名...</div>
+        <div ng-message="record-taken">对不起, {{ $parent.data.username }} 用户名已经注册</div>
+    </div>
+</div>
+<div class="form-group">
+    <label>性别：</label>
+    <label class="radio-inline">
+        <input name="gender" type="radio" value="1" ng-model="data.gender" required="!my_form.gender"/> 男
+    </label>
+    <label class="radio-inline">
+        <input name="gender" type="radio" value="0" ng-model="data.gender" required="!my_form.gender"/> 女
+    </label>
+    <div class="error-messages" ng-if="interacted(my_form.gender)" ng-messages="my_form.gender.$error">
+        <div ng-message="required">请选择性别</div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="input_qq">QQ:</label>
+    <input class="form-control"
+           type="text"
+           name="qq"
+           id="input_qq"
+           ng-model="data.qq"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-pattern="qqRegex"
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.qq)" ng-messages="my_form.qq.$error">
+        <div ng-message="required">请输入QQ号</div>
+        <div ng-message="pattern">请输入正确的QQ号</div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="input_mobile">手机号:</label>
+    <input class="form-control"
+           type="text"
+           name="mobile"
+           id="input_mobile"
+           ng-model="data.mobile"
+           ng-model-options="{ updateOn: 'blur' }"
+           fs-mobile-validation
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.mobile)" ng-messages="my_form.mobile.$error">
+        <div ng-message="required">请输入手机号</div>
+        <div ng-message="fsMobileValidation">请输入正确的手机号</div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="input_idcard">身份证:</label>
+    <input class="form-control"
+           type="text"
+           name="idcard"
+           id="input_idcard"
+           ng-model="data.idcard"
+           ng-model-options="{ updateOn: 'blur' }"
+           fs-idcard-validation
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.idcard)" ng-messages="my_form.idcard.$error">
+        <div ng-message="required">请输入身份证</div>
+        <div ng-message="fsIdcardValidation">请输入正确的身份证号</div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="input_email">邮箱:</label>
+    <input class="form-control"
+           type="email"
+           name="email"
+           id="input_email"
+           ng-model="data.email"
+           ng-model-options="{ updateOn: 'blur' }"
+           fs-email-validation
+           fake-remote-record-validator="fakeEmails"
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.email)" ng-messages="my_form.email.$error">
+        <div ng-message="required">请输入邮箱</div>
+        <div ng-message="fsEmailValidation">请输入正确的邮箱</div>
+        <div ng-message="record-loading">正在检查邮箱是否唯一...</div>
+        <div ng-message="record-taken">对不起， {{ $parent.data.email_address }} 邮箱已经注册了</div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input_password">密码:</label>
+    <input class="form-control"
+           type="password"
+           name="password"
+           id="input_password"
+           ng-model="data.password"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-minlength="6"
+           ng-maxlength="12"
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.password)" ng-messages="my_form.password.$error">
+        <ng-messages-include src="password-messages"></ng-messages-include>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input_password_confirm">确认密码:</label>
+    <input class="form-control"
+           type="password"
+           name="password_confirm"
+           id="input_password_confirm"
+           ng-model="data.password_confirm"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-minlength="6"
+           ng-maxlength="12"
+           fs-match-validation="data.password"
+           required/>
+
+    <div class="error-messages" ng-if="interacted(my_form.password_confirm)"
+         ng-messages="my_form.password_confirm.$error">
+        <ng-messages-include src="password-messages"></ng-messages-include>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input_birthday">出生日期:</label>
+    <input class="form-control" type="text" name="birthday" id="input_birthday" ng-model="data.birthday" readonly
+           required fs-datepicker data-autoclose="true" model-date-format="yyyy-MM-dd" data-trigger="click"/>
+
+    <div class="error-messages" ng-if="interacted(my_form.birthday)" ng-messages="my_form.birthday.$error">
+        <div ng-message="required">请输入出生日期</div>
+        <div ng-message="date">请输入正确的出生日期</div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input_native">籍贯:</label>
+    <select class="form-control" name="native" id="input_native" ng-model="data.native"
+            ng-options="native for native in natives" required>
+    </select>
+
+    <div class="error-messages" ng-if="interacted(my_form.native)" ng-messages="my_form.native.$error">
+        <div ng-message="required">请选择籍贯</div>
+    </div>
+</div>
+<!--<div class="form-group">
+    <label>爱好:</label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="hobby" ng-model="data.hobby['篮球']"
+               required="data.hobby.length === 3"/>
+        篮球
+    </label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="hobby" ng-model="data.hobby['足球']"
+               required="data.hobby.length === 3"/>
+        足球
+    </label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="hobby" ng-model="data.hobby['看电影']"
+               required="data.hobby.length === 3"/>
+        看电影
+    </label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="hobby" ng-model="data.hobby['旅游']"
+               required="data.hobby.length === 3"/>
+        旅游
+    </label>
+
+    <div class="error-messages" ng-if="interacted(my_form.hobby)" ng-messages="my_form.hobby.$error">
+        <div ng-message="required">请至少选择一个爱好</div>
+    </div>
+</div>-->
+<div class="form-group">
+    <label for="input_school">学校:</label>
+    <select class="form-control"
+            name="school"
+            id="input_school"
+            ng-model="data.school"
+            fs-options="school.code as school.name for school in schools"
+            placeholder="请选择学校"
+            fs-select
+            required>
+    </select>
+
+    <div class="error-messages" ng-if="interacted(my_form.school)" ng-messages="my_form.school.$error">
+        <div ng-message="required">请选择学校</div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="checkbox-inline">
+        <input type="checkbox" ng-true-value="1" ng-false-value="0" name="agree" ng-model="data.agree"
+               required="data.agree === 1"> 同意协议
+    </label>
+
+    <div class="error-messages" ng-if="interacted(my_form.agree)" ng-messages="my_form.agree.$error">
+        <div ng-message="required">请同意协议</div>
+    </div>
+</div>
+<input class="form-control" type="submit"/>
+</div>
+<div class="col-md-5">
+    <samp>表单数据：</samp>
+    <pre>{{data | json}}</pre>
+</div>
+</div>
+</form>
+
+<script type="text/ng-template" id="password-messages">
+    <div ng-message="required">请输入密码</div>
+    <div ng-message="minlength || maxlength">密码必须是6~12位</div>
+    <div ng-message="fsMatchValidation">密码不一致</div>
+</script>

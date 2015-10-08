@@ -1,0 +1,31 @@
+{
+  "name": "fishjs",
+  "version": "0.0.1",
+  "authors": [
+    "xudaosong <xudaosong@163.com>"
+  ],
+  "description": "fishjs",
+  "homepage": "https://github.com/xudaosong/fishjs",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "fishjs"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.*",
+    "angular-animate": "~1.4.7",
+    "angular-sanitize": "^1.4.4",
+    "angular-messages": "^1.4.4",
+    "animate.css": "^3.4.0"
+  },
+  "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-scroll": "~0.7.1",
+    "angular-strap": "~2.3.3",
+    "slick-carousel": "~1.5.8"
+  },
+  "main":"./fish-2.0.0.js",
+  "src": "src",
+  "docs": "docs",
+  "moduleName": "fishjs"
+}

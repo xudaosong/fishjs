@@ -1,0 +1,61 @@
+<style>
+    .drop-box {
+        background: #F8F8F8;
+        border: 5px dashed #DDD;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        padding-top: 55px;
+    }
+    .dragover {
+        border: 5px dashed blue;
+    }
+</style>
+<div class="bs-docs-section" ng-controller="FileUploadDemoCtrl">
+    {{errorMsg}}
+    <h4>上传一张图片，最大1MB，最高1000px</h4>
+    <button type="file" ng-model="f" fsf-select="uploadFiles([$file])"
+            accept="image/*" fsf-max-height="1000" fsf-max-size="1MB">
+       选择文件
+    </button>
+    <br>
+    {{f.name}} {{f.$error}} {{f.$errorParam}}
+      <div class="progress" ng-show="f.progress >= 0">
+           <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;" ng-bind="f.progress + '%'">
+           </div>
+      </div>
+        <img class="img-rounded img-responsive" fsf-src="f">
+    <hr/>
+    <h4>上传多张图片，最大1MB，最高1000px</h4>
+    <button type="file" ng-model="btnFiles" fsf-select="uploadFiles($files)" multiple
+            accept="image/*" fsf-max-height="1000" fsf-max-size="1MB">
+        选择文件</button>
+    <br>
+    <ul>
+        <li ng-repeat="f in btnFiles">
+            {{f.name}} {{f.$error}} {{f.$errorParam}}
+            <div class="progress" ng-show="f.progress >= 0">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;" ng-bind="f.progress + '%'">
+                </div>
+            </div>
+            <img class="img-rounded img-responsive" fsf-src="f">
+        </li>
+    </ul>
+    <hr/>
+    <div fsf-drop fsf-select ng-model="files" class="drop-box"
+         fsf-drag-over-class="dragover" fsf-multiple="true" fsf-allow-dir="true"
+         accept="image/*,application/pdf"
+         fsf-pattern="'image/*,application/pdf'">拖放多张图片或pdf文件到这里，或者单击这里上传</div>
+    <div fsf-no-file-drop>该浏览器不支持文件拖放</div>
+    <br/>
+    <ul>
+        <li ng-repeat="f in files">
+            {{f.name}} {{f.$error}} {{f.$errorParam}}
+            <div class="progress" ng-show="f.progress >= 0">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;" ng-bind="f.progress + '%'">
+                </div>
+            </div>
+            <img class="img-rounded img-responsive" fsf-src="f">
+        </li>
+    </ul>
+</div>

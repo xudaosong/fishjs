@@ -1,0 +1,52 @@
+<div class="bs-docs-section" ng-controller="CollapseDemoCtrl">
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+        <!-- ngModel is optional -->
+        <div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" fs-collapse data-animation="fs-collapse">
+            <div class="panel panel-default" ng-repeat="panel in panels">
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title">
+                        <a fs-collapse-toggle>
+                            {{ panel.title }}
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse" role="tabpanel" fs-collapse-target>
+                    <div class="panel-body">
+                        {{ panel.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+        <!-- control a collapse panel with ngModel -->
+        <div class="btn-group">
+            <label class="btn btn-default" ng-repeat="panel in panels">
+                <input type="radio" class="btn btn-default" ng-click="$parent.panels.activePanel=$index" value="{{ $index }}">Panel n°{{ $index + 1 }}
+            </label>
+        </div>
+        <div class="btn btn-default" ng-click="pushPanel()">Add new panel</div>
+    </div>
+
+    <div class="bs-example" style="padding-bottom: 24px;" append-source>
+        <!-- ngModel is optional -->
+        <div class="panel-group" ng-model="multiplePanels.activePanels" data-allow-multiple="true" role="tablist"
+             aria-multiselectable="true" fs-collapse>
+            <div class="panel panel-default" ng-repeat="panel in panels">
+                <div class="panel-heading" role="tab">
+                    <h4 class="panel-title">
+                        <a fs-collapse-toggle>
+                            {{ panel.title }}
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse" role="tabpanel" fs-collapse-target>
+                    <div class="panel-body">
+                        {{ panel.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
