@@ -1,0 +1,1 @@
+`fsBreadcrumb` 基于ui.router的面包屑组件。

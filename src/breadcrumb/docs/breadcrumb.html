@@ -1,0 +1,156 @@
+<div ng-controller="BreadcrumbDemoCtrl">
+    <ul class="nav">
+        <li><a class="brand" ui-sref="home">fs-breadcrumb</a></li>
+        <li ng-class="{active: !isActive('home')}"><a ui-sref="sample">Sample</a></li>
+    </ul>
+
+
+    <div class="row">
+        <div class="well" fs-breadcrumb>
+        </div>
+        <div ui-view>
+        </div>
+    </div>
+
+</div>
+<script type="text/ng-template" id="views/home.html">
+    <h2>Home</h2>
+    <a ui-sref="sample">sample</a>
+</script>
+<script type="text/ng-template" id="views/booking_day.html">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Room</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="reservation in between(reservationDate)">
+            <td>{{reservation.reservationId}}</td>
+            <td>
+                <a ui-sref="room.detail({roomId: reservation.roomId, from: 'booking.day({year:\'{{reservationDate.getFullYear()}}\', month: \'{{reservationDate.getMonth() + 1}}\', day: \'{{reservationDate.getDate()}}\'})|{{reservationDate.getTime()}}'})">{{getRoom(reservation.roomId).roomNumber}}</a>
+            </td>
+            <td><a ui-sref=".detail({reservationId: reservation.reservationId})" class="btn">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<script type="text/ng-template" id="views/booking_detail.html">
+    <div class="well" style="margin-bottom: 0px">
+        <button type="button" class="close" ng-click="dismiss()">&times;</button>
+        <h2>Reservation {{reservation.reservationId}}</h2>
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>{{reservation.reservationId}}</dd>
+            <dt>Guest</dt>
+            <dd>{{reservation.guestName}}</dd>
+            <dt>Room</dt>
+            <dd>{{room.roomNumber}}</dd>
+            <dt>From</dt>
+            <dd>{{reservation.from | date:'mediumDate'}}</dd>
+            <dt>To</dt>
+            <dd>{{addDays(reservation.nights, reservation.from) | date:'mediumDate'}}</dd>
+        </dl>
+    </div>
+</script>
+<script type="text/ng-template" id="views/booking_list.html">
+    <div class="row">
+        <div class="span12">
+            <h2>Booking</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <datepicker date-disabled="!between(date).length" ng-model="dpModel"/>
+        </div>
+        <div class="span6" ui-view>
+
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="views/room_detail.html">
+    <h2>Room {{room.roomNumber}}</h2>
+    <dl class="dl-horizontal">
+        <dt>Id</dt>
+        <dd>{{room.roomId}}</dd>
+        <dt>Number</dt>
+        <dd>{{room.roomNumber}}</dd>
+        <dt>Type</dt>
+        <dd>{{room.type}}</dd>
+    </dl>
+    <p><a ui-sref=".edit" class="btn">Edit</a></p>
+</script>
+<script type="text/ng-template" id="views/room_form.html">
+    <h2 ng-show="room.roomId">Edition room {{room.roomId}}</h2>
+    <h2 ng-hide="room.roomId">New room</h2>
+
+    <form class="form-horizontal" name="detail" ng-submit="save()">
+
+        <div class="control-group">
+            <label class="control-label" for="inputRoomId">Id</label>
+
+            <div class="controls">
+                <input type="text" id="inputRoomId" disabled ng-model="model.roomId">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputRoomNumber">Number</label>
+
+            <div class="controls">
+                <input type="text" id="inputRoomNumber" ng-model="model.roomNumber" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="selectType">Type</label>
+
+            <div class="controls">
+                <select id="selectType" ng-model="model.type" ng-options="type for type in ['Single', 'Double']"
+                        required></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script type="text/ng-template" id="views/room_list.html">
+    <h2>Rooms</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in rooms">
+            <td>{{item.roomId}}</td>
+            <td>{{item.roomNumber}}</td>
+            <td>{{item.type}}</td>
+            <td><a ui-sref=".detail({roomId: item.roomId})" class="btn">View</a></td>
+            <td><a ui-sref=".detail.edit({roomId: item.roomId})" class="btn">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><a ui-sref=".new" class="btn">New</a></p>
+</script>
+<script type="text/ng-template" id="views/sample.html">
+    <h2>Sample</h2>
+    <div>
+        Let's start navigating :
+        <a class="btn btn-primary" ui-sref="room">Rooms</a>
+        <a class="btn btn-primary" ui-sref="booking">Booking</a>
+    </div>
+</script>

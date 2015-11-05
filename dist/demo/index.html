@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="assets/animate.css"/>
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
     <link rel="stylesheet" href="/bower_components/textAngular/dist/textAngular.css"/>
-    <link rel="stylesheet" href="../fish-2.0.0.css"/>
+    <link rel="stylesheet" href="../fish-0.0.1.css"/>
     <link rel="stylesheet" href="assets/demo.css"/>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-messages/angular-messages.js"></script>
@@ -26,7 +27,7 @@
     <script src="/bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
     <script src="/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
     <script src="/bower_components/textAngular/dist/textAngular.min.js"></script>
-    <script src="../fish-2.0.0.js"></script>
+    <script src="../fish-0.0.1.js"></script>
 
     <script src="assets/angular-locale_zh-cn.js"></script>
     <script src="assets/plunker.js"></script>
@@ -126,7 +127,7 @@
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'aside')">
+                                        ng-click="edit('dist','fish','0.0.1', 'aside')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -234,6 +235,790 @@ angular.module('fish.demo')
     });
                 </script>
                 
+                <section id="fsBreadcrumb">
+                    <div class="page-header">
+                        <h1> fsBreadcrumb
+                            <small>(fish.breadcrumb)</small>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div ng-controller="BreadcrumbDemoCtrl">
+    <ul class="nav">
+        <li><a class="brand" ui-sref="home">fs-breadcrumb</a></li>
+        <li ng-class="{active: !isActive('home')}"><a ui-sref="sample">Sample</a></li>
+    </ul>
+
+
+    <div class="row">
+        <div class="well" fs-breadcrumb>
+        </div>
+        <div ui-view>
+        </div>
+    </div>
+
+</div>
+<script type="text/ng-template" id="views/home.html">
+    <h2>Home</h2>
+    <a ui-sref="sample">sample</a>
+</script>
+<script type="text/ng-template" id="views/booking_day.html">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Room</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="reservation in between(reservationDate)">
+            <td>{{reservation.reservationId}}</td>
+            <td>
+                <a ui-sref="room.detail({roomId: reservation.roomId, from: 'booking.day({year:\'{{reservationDate.getFullYear()}}\', month: \'{{reservationDate.getMonth() + 1}}\', day: \'{{reservationDate.getDate()}}\'})|{{reservationDate.getTime()}}'})">{{getRoom(reservation.roomId).roomNumber}}</a>
+            </td>
+            <td><a ui-sref=".detail({reservationId: reservation.reservationId})" class="btn">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<script type="text/ng-template" id="views/booking_detail.html">
+    <div class="well" style="margin-bottom: 0px">
+        <button type="button" class="close" ng-click="dismiss()">&times;</button>
+        <h2>Reservation {{reservation.reservationId}}</h2>
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>{{reservation.reservationId}}</dd>
+            <dt>Guest</dt>
+            <dd>{{reservation.guestName}}</dd>
+            <dt>Room</dt>
+            <dd>{{room.roomNumber}}</dd>
+            <dt>From</dt>
+            <dd>{{reservation.from | date:'mediumDate'}}</dd>
+            <dt>To</dt>
+            <dd>{{addDays(reservation.nights, reservation.from) | date:'mediumDate'}}</dd>
+        </dl>
+    </div>
+</script>
+<script type="text/ng-template" id="views/booking_list.html">
+    <div class="row">
+        <div class="span12">
+            <h2>Booking</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <datepicker date-disabled="!between(date).length" ng-model="dpModel"/>
+        </div>
+        <div class="span6" ui-view>
+
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="views/room_detail.html">
+    <h2>Room {{room.roomNumber}}</h2>
+    <dl class="dl-horizontal">
+        <dt>Id</dt>
+        <dd>{{room.roomId}}</dd>
+        <dt>Number</dt>
+        <dd>{{room.roomNumber}}</dd>
+        <dt>Type</dt>
+        <dd>{{room.type}}</dd>
+    </dl>
+    <p><a ui-sref=".edit" class="btn">Edit</a></p>
+</script>
+<script type="text/ng-template" id="views/room_form.html">
+    <h2 ng-show="room.roomId">Edition room {{room.roomId}}</h2>
+    <h2 ng-hide="room.roomId">New room</h2>
+
+    <form class="form-horizontal" name="detail" ng-submit="save()">
+
+        <div class="control-group">
+            <label class="control-label" for="inputRoomId">Id</label>
+
+            <div class="controls">
+                <input type="text" id="inputRoomId" disabled ng-model="model.roomId">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputRoomNumber">Number</label>
+
+            <div class="controls">
+                <input type="text" id="inputRoomNumber" ng-model="model.roomNumber" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="selectType">Type</label>
+
+            <div class="controls">
+                <select id="selectType" ng-model="model.type" ng-options="type for type in ['Single', 'Double']"
+                        required></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script type="text/ng-template" id="views/room_list.html">
+    <h2>Rooms</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in rooms">
+            <td>{{item.roomId}}</td>
+            <td>{{item.roomNumber}}</td>
+            <td>{{item.type}}</td>
+            <td><a ui-sref=".detail({roomId: item.roomId})" class="btn">View</a></td>
+            <td><a ui-sref=".detail.edit({roomId: item.roomId})" class="btn">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><a ui-sref=".new" class="btn">New</a></p>
+</script>
+<script type="text/ng-template" id="views/sample.html">
+    <h2>Sample</h2>
+    <div>
+        Let's start navigating :
+        <a class="btn btn-primary" ui-sref="room">Rooms</a>
+        <a class="btn btn-primary" ui-sref="booking">Booking</a>
+    </div>
+</script>
+                        </div>
+                        <div class="col-md-6">
+                            <p><code>fsBreadcrumb</code> 基于ui.router的面包屑组件。</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row code">
+                        <div class="col-md-12" ng-controller="PlunkerCtrl">
+                            <div class="pull-right">
+                                <button class="btn btn-info" id="plunk-btn"
+                                        ng-click="edit('dist','fish','0.0.1', 'breadcrumb')">
+                                    <i class="glyphicon glyphicon-edit"></i> Edit in plunker
+                                </button>
+                            </div>
+                            <div fs-tabs>
+                                <div fs-pane title="Markup">
+                                    <div plunker-content="markup">
+                                        <pre ng-non-bindable><code data-language="html">&lt;div ng-controller=&quot;BreadcrumbDemoCtrl&quot;&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+        &lt;li&gt;&lt;a class=&quot;brand&quot; ui-sref=&quot;home&quot;&gt;fs-breadcrumb&lt;/a&gt;&lt;/li&gt;
+        &lt;li ng-class=&quot;{active: !isActive(&#x27;home&#x27;)}&quot;&gt;&lt;a ui-sref=&quot;sample&quot;&gt;Sample&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;well&quot; fs-breadcrumb&gt;
+        &lt;/div&gt;
+        &lt;div ui-view&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/home.html&quot;&gt;
+    &lt;h2&gt;Home&lt;/h2&gt;
+    &lt;a ui-sref=&quot;sample&quot;&gt;sample&lt;/a&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/booking_day.html&quot;&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Id&lt;/th&gt;
+            &lt;th&gt;Room&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+        &lt;tr ng-repeat=&quot;reservation in between(reservationDate)&quot;&gt;
+            &lt;td&gt;{{reservation.reservationId}}&lt;/td&gt;
+            &lt;td&gt;
+                &lt;a ui-sref=&quot;room.detail({roomId: reservation.roomId, from: &#x27;booking.day({year:\&#x27;{{reservationDate.getFullYear()}}\&#x27;, month: \&#x27;{{reservationDate.getMonth() + 1}}\&#x27;, day: \&#x27;{{reservationDate.getDate()}}\&#x27;})|{{reservationDate.getTime()}}&#x27;})&quot;&gt;{{getRoom(reservation.roomId).roomNumber}}&lt;/a&gt;
+            &lt;/td&gt;
+            &lt;td&gt;&lt;a ui-sref=&quot;.detail({reservationId: reservation.reservationId})&quot; class=&quot;btn&quot;&gt;View&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/booking_detail.html&quot;&gt;
+    &lt;div class=&quot;well&quot; style=&quot;margin-bottom: 0px&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; ng-click=&quot;dismiss()&quot;&gt;&amp;times;&lt;/button&gt;
+        &lt;h2&gt;Reservation {{reservation.reservationId}}&lt;/h2&gt;
+        &lt;dl class=&quot;dl-horizontal&quot;&gt;
+            &lt;dt&gt;Id&lt;/dt&gt;
+            &lt;dd&gt;{{reservation.reservationId}}&lt;/dd&gt;
+            &lt;dt&gt;Guest&lt;/dt&gt;
+            &lt;dd&gt;{{reservation.guestName}}&lt;/dd&gt;
+            &lt;dt&gt;Room&lt;/dt&gt;
+            &lt;dd&gt;{{room.roomNumber}}&lt;/dd&gt;
+            &lt;dt&gt;From&lt;/dt&gt;
+            &lt;dd&gt;{{reservation.from | date:&#x27;mediumDate&#x27;}}&lt;/dd&gt;
+            &lt;dt&gt;To&lt;/dt&gt;
+            &lt;dd&gt;{{addDays(reservation.nights, reservation.from) | date:&#x27;mediumDate&#x27;}}&lt;/dd&gt;
+        &lt;/dl&gt;
+    &lt;/div&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/booking_list.html&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;span12&quot;&gt;
+            &lt;h2&gt;Booking&lt;/h2&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;span6&quot;&gt;
+            &lt;datepicker date-disabled=&quot;!between(date).length&quot; ng-model=&quot;dpModel&quot;/&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;span6&quot; ui-view&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/room_detail.html&quot;&gt;
+    &lt;h2&gt;Room {{room.roomNumber}}&lt;/h2&gt;
+    &lt;dl class=&quot;dl-horizontal&quot;&gt;
+        &lt;dt&gt;Id&lt;/dt&gt;
+        &lt;dd&gt;{{room.roomId}}&lt;/dd&gt;
+        &lt;dt&gt;Number&lt;/dt&gt;
+        &lt;dd&gt;{{room.roomNumber}}&lt;/dd&gt;
+        &lt;dt&gt;Type&lt;/dt&gt;
+        &lt;dd&gt;{{room.type}}&lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;p&gt;&lt;a ui-sref=&quot;.edit&quot; class=&quot;btn&quot;&gt;Edit&lt;/a&gt;&lt;/p&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/room_form.html&quot;&gt;
+    &lt;h2 ng-show=&quot;room.roomId&quot;&gt;Edition room {{room.roomId}}&lt;/h2&gt;
+    &lt;h2 ng-hide=&quot;room.roomId&quot;&gt;New room&lt;/h2&gt;
+
+    &lt;form class=&quot;form-horizontal&quot; name=&quot;detail&quot; ng-submit=&quot;save()&quot;&gt;
+
+        &lt;div class=&quot;control-group&quot;&gt;
+            &lt;label class=&quot;control-label&quot; for=&quot;inputRoomId&quot;&gt;Id&lt;/label&gt;
+
+            &lt;div class=&quot;controls&quot;&gt;
+                &lt;input type=&quot;text&quot; id=&quot;inputRoomId&quot; disabled ng-model=&quot;model.roomId&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;control-group&quot;&gt;
+            &lt;label class=&quot;control-label&quot; for=&quot;inputRoomNumber&quot;&gt;Number&lt;/label&gt;
+
+            &lt;div class=&quot;controls&quot;&gt;
+                &lt;input type=&quot;text&quot; id=&quot;inputRoomNumber&quot; ng-model=&quot;model.roomNumber&quot; required&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;control-group&quot;&gt;
+            &lt;label class=&quot;control-label&quot; for=&quot;selectType&quot;&gt;Type&lt;/label&gt;
+
+            &lt;div class=&quot;controls&quot;&gt;
+                &lt;select id=&quot;selectType&quot; ng-model=&quot;model.type&quot; ng-options=&quot;type for type in [&#x27;Single&#x27;, &#x27;Double&#x27;]&quot;
+                        required&gt;&lt;/select&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;control-group&quot;&gt;
+            &lt;div class=&quot;controls&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn&quot;&gt;Save&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/room_list.html&quot;&gt;
+    &lt;h2&gt;Rooms&lt;/h2&gt;
+
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Id&lt;/th&gt;
+            &lt;th&gt;Number&lt;/th&gt;
+            &lt;th&gt;Type&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+        &lt;tr ng-repeat=&quot;item in rooms&quot;&gt;
+            &lt;td&gt;{{item.roomId}}&lt;/td&gt;
+            &lt;td&gt;{{item.roomNumber}}&lt;/td&gt;
+            &lt;td&gt;{{item.type}}&lt;/td&gt;
+            &lt;td&gt;&lt;a ui-sref=&quot;.detail({roomId: item.roomId})&quot; class=&quot;btn&quot;&gt;View&lt;/a&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;a ui-sref=&quot;.detail.edit({roomId: item.roomId})&quot; class=&quot;btn&quot;&gt;Edit&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;p&gt;&lt;a ui-sref=&quot;.new&quot; class=&quot;btn&quot;&gt;New&lt;/a&gt;&lt;/p&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;views/sample.html&quot;&gt;
+    &lt;h2&gt;Sample&lt;/h2&gt;
+    &lt;div&gt;
+        Let&#x27;s start navigating :
+        &lt;a class=&quot;btn btn-primary&quot; ui-sref=&quot;room&quot;&gt;Rooms&lt;/a&gt;
+        &lt;a class=&quot;btn btn-primary&quot; ui-sref=&quot;booking&quot;&gt;Booking&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/script&gt;</code></pre>
+                                    </div>
+                                </div>
+                                <div fs-pane title="JavaScript">
+                                    <div plunker-content="javascript">
+                                        <pre ng-non-bindable><code data-language="javascript">angular.module(&#x27;fish.demo&#x27;)
+    .config(function($breadcrumbProvider) {
+        $breadcrumbProvider.setOptions({
+            prefixStateName: &#x27;home&#x27;,
+            template: &#x27;bootstrap2&#x27;
+        });
+    })
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state(&#x27;home&#x27;, {
+                url: &#x27;/home&#x27;,
+                templateUrl: &#x27;views/home.html&#x27;,
+                fsBreadcrumb: {
+                    label: &#x27;Home&#x27;
+                }
+            })
+            .state(&#x27;sample&#x27;, {
+                url: &#x27;/sample&#x27;,
+                templateUrl: &#x27;views/sample.html&#x27;,
+                fsBreadcrumb: {
+                    label: &#x27;Sample&#x27;
+                }
+            })
+            .state(&#x27;booking&#x27;, {
+                url: &#x27;/booking&#x27;,
+                templateUrl: &#x27;views/booking_list.html&#x27;,
+                controller: &#x27;BookingListCtrl&#x27;,
+                fsBreadcrumb: {
+                    label: &#x27;Reservations&#x27;,
+                    parent: &#x27;sample&#x27;
+                }
+            })
+            .state(&#x27;booking.day&#x27;, {
+                url: &#x27;/:year-:month-:day&#x27;,
+                templateUrl: &#x27;views/booking_day.html&#x27;,
+                controller: &#x27;BookingDayCtrl&#x27;,
+                onExit: function($rootScope) {
+                    $rootScope.reservationDate = undefined;
+                },
+                fsBreadcrumb: {
+                    label: &#x27;Reservations for {{reservationDate | date:\&#x27;mediumDate\&#x27;}}&#x27;
+                }
+            })
+            .state(&#x27;booking.day.detail&#x27;, {
+                url: &#x27;/{reservationId}&#x27;,
+                onEnter: function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: &quot;views/booking_detail.html&quot;,
+                        controller: &#x27;BookingDetailCtrl&#x27;
+                    }).result.then(function(result) {
+                            return $state.go(&quot;^&quot;);
+                        }, function(result) {
+                            return $state.go(&quot;^&quot;);
+                        });
+                },
+                fsBreadcrumb: {
+                    skip: true
+                }
+            })
+            .state(&#x27;room&#x27;, {
+                url: &#x27;/room&#x27;,
+                templateUrl: &#x27;views/room_list.html&#x27;,
+                controller: &#x27;RoomListCtrl&#x27;,
+                fsBreadcrumb: {
+                    label: &#x27;Rooms&#x27;,
+                    parent: &#x27;sample&#x27;
+                }
+            })
+            .state(&#x27;room.new&#x27;, {
+                url: &#x27;/new&#x27;,
+                views: {
+                    &quot;@&quot; : {
+                        templateUrl: &#x27;views/room_form.html&#x27;,
+                        controller: &#x27;RoomDetailCtrl&#x27;
+                    }
+                },
+                fsBreadcrumb: {
+                    label: &#x27;New room&#x27;
+                }
+            })
+            .state(&#x27;room.detail&#x27;, {
+                url: &#x27;/{roomId}?from&#x27;,
+                views: {
+                    &quot;@&quot; : {
+                        templateUrl: &#x27;views/room_detail.html&#x27;,
+                        controller: &#x27;RoomDetailCtrl&#x27;
+                    }
+                },
+                fsBreadcrumb: {
+                    label: &#x27;Room {{room.roomNumber}}&#x27;,
+                    parent: function ($scope) {
+                        return $scope.from || &#x27;room&#x27;;
+                    }
+                }
+            })
+            .state(&#x27;room.detail.edit&#x27;, {
+                url: &#x27;/edit&#x27;,
+                views: {
+                    &quot;@&quot; : {
+                        templateUrl: &#x27;views/room_form.html&#x27;,
+                        controller: &#x27;RoomDetailCtrl&#x27;
+                    }
+                },
+                fsBreadcrumb: {
+                    label: &#x27;Editing&#x27;
+                }
+            });
+
+        $urlRouterProvider.otherwise(&#x27;/home&#x27;);
+
+    })
+
+    .value(&#x27;rooms&#x27;, [
+        {roomId: 1, roomNumber: 101, type: &#x27;Double&#x27;},
+        {roomId: 2, roomNumber: 102, type: &#x27;Double&#x27;},
+        {roomId: 3, roomNumber: 103, type: &#x27;Single&#x27;},
+        {roomId: 4, roomNumber: 104, type: &#x27;Double&#x27;}
+    ])
+    .factory(&#x27;reservations&#x27;, function(dateUtils) {
+        return [
+            {reservationId: 1, guestName: &#x27;Robert Smith&#x27;, roomId: &#x27;2&#x27;, from: dateUtils.addDays(-1), nights: 3},
+            {reservationId: 2, guestName: &#x27;John Doe&#x27;, roomId: &#x27;3&#x27;, from: dateUtils.addDays(-8), nights: 5},
+            {reservationId: 3, guestName: &#x27;William Gordon&#x27;, roomId: &#x27;1&#x27;, from: dateUtils.addDays(3), nights: 6},
+            {reservationId: 4, guestName: &#x27;Michael Robinson&#x27;, roomId: &#x27;2&#x27;, from: dateUtils.addDays(6), nights: 2},
+            {reservationId: 5, guestName: &#x27;Tracy Marschall&#x27;, roomId: &#x27;3&#x27;, from: dateUtils.addDays(12), nights: 1}
+        ];
+    })
+    .factory(&#x27;dateUtils&#x27;, function() {
+        return {
+            addDays: function(days, date) {
+                if(!date) {
+                    var todayTime = new Date();
+                    todayTime.setHours(0,0,0,0);
+                    date = new Date(todayTime);
+                }
+
+                var newDate = new Date(date);
+                newDate.setDate(date.getDate() + days);
+                return newDate;
+            }
+        }
+    })
+    .controller(&#x27;BreadcrumbDemoCtrl&#x27;, function ($scope,$state) {
+        $scope.isActive = function(stateName) {
+            return $state.includes(stateName);
+        }
+    })
+    .controller(&#x27;BookingDayCtrl&#x27;, function($scope, $rootScope, $state, $stateParams, rooms) {
+        $rootScope.reservationDate = new Date($stateParams.year, $stateParams.month - 1, $stateParams.day);
+
+        if(!$scope.between($rootScope.reservationDate).length) {
+            $state.go(&#x27;^&#x27;);
+        }
+
+        $scope.getRoom = function(id) {
+            return rooms[0];
+        }
+    })
+    .controller(&#x27;BookingDetailCtrl&#x27;, function($scope, $stateParams, dateUtils, reservations, rooms) {
+        $scope.addDays = dateUtils.addDays;
+        $scope.reservation = reservations[0];
+        $scope.room = rooms[0];
+        $scope.dismiss = function() {
+            $scope.$dismiss();
+        };
+    })
+    .controller(&#x27;BookingListCtrl&#x27;, function($scope, $rootScope, $state, dateUtils, reservations) {
+
+        // Some hardcoded data ;
+        $scope.reservations = reservations;
+
+        $scope.$watch(&#x27;reservationDate&#x27;, function(newValue, oldValue) {
+            $scope.dpModel = $rootScope.reservationDate;
+        });
+
+
+        $scope.$watch(&#x27;dpModel&#x27;, function(newValue, oldValue) {
+            if(newValue &amp;&amp; !angular.equals(newValue, oldValue)) {
+                $state.go(&#x27;booking.day&#x27;, {year: newValue.getFullYear(), month: newValue.getMonth() + 1, day: newValue.getDate()});
+            }
+        });
+
+        $scope.between = function(date) {
+            return $scope.reservations[0];
+        };
+
+    })
+    .controller(&#x27;RoomDetailCtrl&#x27;, function($scope, $state, $stateParams, rooms) {
+        $scope.rooms = rooms;
+        if($stateParams.from) {
+            $scope.from = $stateParams.from.split(&#x27;|&#x27;)[0];
+            $scope.reservationDate = new Date(parseInt($stateParams.from.split(&#x27;|&#x27;)[1]));
+        }
+
+        if($stateParams.roomId) {
+            $scope.room = rooms[0];
+            if($scope.room) {
+                $scope.model = angular.copy($scope.room);
+            } else {
+                $state.go(&#x27;^&#x27;);
+            }
+        }
+
+        $scope.save = function() {
+            if($scope.model.roomId) {
+                angular.extend($scope.room, $scope.model);
+            } else {
+            }
+            $state.go(&#x27;^&#x27;);
+        }
+
+    })
+    .controller(&#x27;RoomListCtrl&#x27;, function($scope, rooms) {
+        $scope.rooms = rooms;
+    });
+
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <script type="text/javascript">
+                    angular.module('fish.demo')
+    .config(function($breadcrumbProvider) {
+        $breadcrumbProvider.setOptions({
+            prefixStateName: 'home',
+            template: 'bootstrap2'
+        });
+    })
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'views/home.html',
+                fsBreadcrumb: {
+                    label: 'Home'
+                }
+            })
+            .state('sample', {
+                url: '/sample',
+                templateUrl: 'views/sample.html',
+                fsBreadcrumb: {
+                    label: 'Sample'
+                }
+            })
+            .state('booking', {
+                url: '/booking',
+                templateUrl: 'views/booking_list.html',
+                controller: 'BookingListCtrl',
+                fsBreadcrumb: {
+                    label: 'Reservations',
+                    parent: 'sample'
+                }
+            })
+            .state('booking.day', {
+                url: '/:year-:month-:day',
+                templateUrl: 'views/booking_day.html',
+                controller: 'BookingDayCtrl',
+                onExit: function($rootScope) {
+                    $rootScope.reservationDate = undefined;
+                },
+                fsBreadcrumb: {
+                    label: 'Reservations for {{reservationDate | date:\'mediumDate\'}}'
+                }
+            })
+            .state('booking.day.detail', {
+                url: '/{reservationId}',
+                onEnter: function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: "views/booking_detail.html",
+                        controller: 'BookingDetailCtrl'
+                    }).result.then(function(result) {
+                            return $state.go("^");
+                        }, function(result) {
+                            return $state.go("^");
+                        });
+                },
+                fsBreadcrumb: {
+                    skip: true
+                }
+            })
+            .state('room', {
+                url: '/room',
+                templateUrl: 'views/room_list.html',
+                controller: 'RoomListCtrl',
+                fsBreadcrumb: {
+                    label: 'Rooms',
+                    parent: 'sample'
+                }
+            })
+            .state('room.new', {
+                url: '/new',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/room_form.html',
+                        controller: 'RoomDetailCtrl'
+                    }
+                },
+                fsBreadcrumb: {
+                    label: 'New room'
+                }
+            })
+            .state('room.detail', {
+                url: '/{roomId}?from',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/room_detail.html',
+                        controller: 'RoomDetailCtrl'
+                    }
+                },
+                fsBreadcrumb: {
+                    label: 'Room {{room.roomNumber}}',
+                    parent: function ($scope) {
+                        return $scope.from || 'room';
+                    }
+                }
+            })
+            .state('room.detail.edit', {
+                url: '/edit',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/room_form.html',
+                        controller: 'RoomDetailCtrl'
+                    }
+                },
+                fsBreadcrumb: {
+                    label: 'Editing'
+                }
+            });
+
+        $urlRouterProvider.otherwise('/home');
+
+    })
+
+    .value('rooms', [
+        {roomId: 1, roomNumber: 101, type: 'Double'},
+        {roomId: 2, roomNumber: 102, type: 'Double'},
+        {roomId: 3, roomNumber: 103, type: 'Single'},
+        {roomId: 4, roomNumber: 104, type: 'Double'}
+    ])
+    .factory('reservations', function(dateUtils) {
+        return [
+            {reservationId: 1, guestName: 'Robert Smith', roomId: '2', from: dateUtils.addDays(-1), nights: 3},
+            {reservationId: 2, guestName: 'John Doe', roomId: '3', from: dateUtils.addDays(-8), nights: 5},
+            {reservationId: 3, guestName: 'William Gordon', roomId: '1', from: dateUtils.addDays(3), nights: 6},
+            {reservationId: 4, guestName: 'Michael Robinson', roomId: '2', from: dateUtils.addDays(6), nights: 2},
+            {reservationId: 5, guestName: 'Tracy Marschall', roomId: '3', from: dateUtils.addDays(12), nights: 1}
+        ];
+    })
+    .factory('dateUtils', function() {
+        return {
+            addDays: function(days, date) {
+                if(!date) {
+                    var todayTime = new Date();
+                    todayTime.setHours(0,0,0,0);
+                    date = new Date(todayTime);
+                }
+
+                var newDate = new Date(date);
+                newDate.setDate(date.getDate() + days);
+                return newDate;
+            }
+        }
+    })
+    .controller('BreadcrumbDemoCtrl', function ($scope,$state) {
+        $scope.isActive = function(stateName) {
+            return $state.includes(stateName);
+        }
+    })
+    .controller('BookingDayCtrl', function($scope, $rootScope, $state, $stateParams, rooms) {
+        $rootScope.reservationDate = new Date($stateParams.year, $stateParams.month - 1, $stateParams.day);
+
+        if(!$scope.between($rootScope.reservationDate).length) {
+            $state.go('^');
+        }
+
+        $scope.getRoom = function(id) {
+            return rooms[0];
+        }
+    })
+    .controller('BookingDetailCtrl', function($scope, $stateParams, dateUtils, reservations, rooms) {
+        $scope.addDays = dateUtils.addDays;
+        $scope.reservation = reservations[0];
+        $scope.room = rooms[0];
+        $scope.dismiss = function() {
+            $scope.$dismiss();
+        };
+    })
+    .controller('BookingListCtrl', function($scope, $rootScope, $state, dateUtils, reservations) {
+
+        // Some hardcoded data ;
+        $scope.reservations = reservations;
+
+        $scope.$watch('reservationDate', function(newValue, oldValue) {
+            $scope.dpModel = $rootScope.reservationDate;
+        });
+
+
+        $scope.$watch('dpModel', function(newValue, oldValue) {
+            if(newValue && !angular.equals(newValue, oldValue)) {
+                $state.go('booking.day', {year: newValue.getFullYear(), month: newValue.getMonth() + 1, day: newValue.getDate()});
+            }
+        });
+
+        $scope.between = function(date) {
+            return $scope.reservations[0];
+        };
+
+    })
+    .controller('RoomDetailCtrl', function($scope, $state, $stateParams, rooms) {
+        $scope.rooms = rooms;
+        if($stateParams.from) {
+            $scope.from = $stateParams.from.split('|')[0];
+            $scope.reservationDate = new Date(parseInt($stateParams.from.split('|')[1]));
+        }
+
+        if($stateParams.roomId) {
+            $scope.room = rooms[0];
+            if($scope.room) {
+                $scope.model = angular.copy($scope.room);
+            } else {
+                $state.go('^');
+            }
+        }
+
+        $scope.save = function() {
+            if($scope.model.roomId) {
+                angular.extend($scope.room, $scope.model);
+            } else {
+            }
+            $state.go('^');
+        }
+
+    })
+    .controller('RoomListCtrl', function($scope, rooms) {
+        $scope.rooms = rooms;
+    });
+
+
+                </script>
+                
                 <section id="fsBusy">
                     <div class="page-header">
                         <h1> fsBusy
@@ -258,7 +1043,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'busy')">
+                                        ng-click="edit('dist','fish','0.0.1', 'busy')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -358,7 +1143,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'carousel')">
+                                        ng-click="edit('dist','fish','0.0.1', 'carousel')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -488,7 +1273,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'collapse')">
+                                        ng-click="edit('dist','fish','0.0.1', 'collapse')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -662,7 +1447,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'datepicker')">
+                                        ng-click="edit('dist','fish','0.0.1', 'datepicker')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -798,7 +1583,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'dropdown')">
+                                        ng-click="edit('dist','fish','0.0.1', 'dropdown')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -965,7 +1750,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'fileupload')">
+                                        ng-click="edit('dist','fish','0.0.1', 'fileupload')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -1259,7 +2044,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'modal')">
+                                        ng-click="edit('dist','fish','0.0.1', 'modal')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -1675,7 +2460,7 @@ For <code>ng-model</code>, <code>total-items</code>, <code>items-per-page</code>
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'pagination')">
+                                        ng-click="edit('dist','fish','0.0.1', 'pagination')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -1836,7 +2621,7 @@ For <code>ng-model</code>, <code>total-items</code>, <code>items-per-page</code>
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'popover')">
+                                        ng-click="edit('dist','fish','0.0.1', 'popover')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2009,7 +2794,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'select')">
+                                        ng-click="edit('dist','fish','0.0.1', 'select')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2161,7 +2946,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'tab')">
+                                        ng-click="edit('dist','fish','0.0.1', 'tab')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2288,7 +3073,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'texteditor')">
+                                        ng-click="edit('dist','fish','0.0.1', 'texteditor')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2401,7 +3186,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'tooltip')">
+                                        ng-click="edit('dist','fish','0.0.1', 'tooltip')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2532,7 +3317,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'typeahead')">
+                                        ng-click="edit('dist','fish','0.0.1', 'typeahead')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -2912,7 +3697,7 @@ angular.module('fish.demo')
                         <div class="col-md-12" ng-controller="PlunkerCtrl">
                             <div class="pull-right">
                                 <button class="btn btn-info" id="plunk-btn"
-                                        ng-click="edit('dist','fish','2.0.0', 'validation')">
+                                        ng-click="edit('dist','fish','0.0.1', 'validation')">
                                     <i class="glyphicon glyphicon-edit"></i> Edit in plunker
                                 </button>
                             </div>
@@ -3398,6 +4183,8 @@ angular.module('fish.demo')
                     <ul class="nav fs-docs-sidenav">
                         
                         <li fs-scrollspy="fsAside"><a fs-smooth-scroll href="#fsAside">fsAside</a></li>
+                        
+                        <li fs-scrollspy="fsBreadcrumb"><a fs-smooth-scroll href="#fsBreadcrumb">fsBreadcrumb</a></li>
                         
                         <li fs-scrollspy="fsBusy"><a fs-smooth-scroll href="#fsBusy">fsBusy</a></li>
                         
