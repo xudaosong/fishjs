@@ -25,7 +25,7 @@
     "slick-carousel": "~1.5.8",
     "angular-breadcrumb": "~0.4.1"
   },
-  "main": "./fish-2.0.0.js",
+  "main": "./dist/fish-0.0.1.js",
   "src": "src",
   "docs": "docs",
   "moduleName": "fishjs"

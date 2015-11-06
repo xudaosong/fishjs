@@ -7,13 +7,7 @@
  * 1.替换ncy为fs
  * 2.替换module名称为fish.breadcrumb
  */
-
-    angular.module('fish.breadcrumb', ['ui.router.state'])
-        .provider('$breadcrumb', $Breadcrumb)
-        .directive('fsBreadcrumb', BreadcrumbDirective)
-        .directive('fsBreadcrumbLast', BreadcrumbLastDirective)
-        .directive('fsBreadcrumbText', BreadcrumbTextDirective);
-
+(function(angular){
     function isAOlderThanB(scopeA, scopeB) {
         if(angular.equals(scopeA.length, scopeB.length)) {
             return scopeA > scopeB;
@@ -371,3 +365,10 @@
     BreadcrumbTextDirective.$inject = ['$interpolate', '$breadcrumb', '$rootScope'];
 
 
+    angular.module('fish.breadcrumb', ['ui.router.state'])
+        .provider('$breadcrumb', $Breadcrumb)
+        .directive('fsBreadcrumb', BreadcrumbDirective)
+        .directive('fsBreadcrumbLast', BreadcrumbLastDirective)
+        .directive('fsBreadcrumbText', BreadcrumbTextDirective);
+
+})(angular);
