@@ -1,0 +1,16 @@
+<div class="fs-typeahead-match" ng-hide="$select.open" ng-disabled="$select.disabled" ng-class="{'btn-default-focus':$select.focus}">
+  <span tabindex="-1"
+      class="btn btn-default form-control fs-typeahead-toggle"
+      aria-label="{{ $select.baseTitle }} activate"
+      ng-disabled="$select.disabled" 
+      ng-click="$select.activate()"
+      style="outline: 0;">
+    <span ng-show="$select.isEmpty()" class="fs-typeahead-placeholder text-muted">{{$select.placeholder}}</span>
+    <span ng-hide="$select.isEmpty()" class="fs-typeahead-match-text pull-left" ng-class="{'fs-typeahead-allow-clear': $select.allowClear && !$select.isEmpty()}" ng-transclude=""></span>
+    <i class="caret pull-right" ng-click="$select.toggle($event)"></i>
+    <a ng-show="$select.allowClear && !$select.isEmpty()" aria-label="{{ $select.baseTitle }} clear" style="margin-right: 10px" 
+      ng-click="$select.clear($event)" class="btn btn-xs btn-link pull-right">
+      <i class="fa fa-remove" aria-hidden="true"></i>
+    </a>
+  </span>
+</div>

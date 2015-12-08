@@ -110,6 +110,17 @@ module.exports = function (grunt) {
                 dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.min.js'
             }
         },
+        // 添加，移除和重建 AngularJS 依赖注入注解，防止uglify压缩后，因为AngularJS没有显式注入，导致代码运行异常
+        ngAnnotate: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= dist %>',
+                    src: '<%= filename %>-<%= pkg.version %>.js',
+                    dest: '<%= dist %>'
+                }]
+            }
+        },
         html2js: {
             dist: {
                 options: {
@@ -122,7 +133,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    src: ['<%= srcDirectory %>/*/*.html'],
+                    src: ['<%= srcDirectory %>/**/*.html','!<%= srcDirectory %>/*/docs/**'],
                     ext: '.html.js',
                     dest: '.tmp'
                 }]
@@ -137,14 +148,7 @@ module.exports = function (grunt) {
                 }
             },
             js: {
-                files: ['<%= srcDirectory %>/*/*.*'],
-                tasks: ['default'],
-                options: {
-                    livereload: true
-                }
-            },
-            demo: {
-                files: ['<%= srcDirectory %>/*/docs/*.*', 'misc/demo/**/*.*'],
+                files: ['<%= srcDirectory %>/**', 'misc/demo/**'],
                 tasks: ['default'],
                 options: {
                     livereload: true
@@ -213,9 +217,9 @@ module.exports = function (grunt) {
             moduleName: enquote('fish.' + name),
             displayName: 'fs' + ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand(srcDirectory + '/' + name + '/*.js'),
-            tplFiles: hasTpl ? grunt.file.expand(srcDirectory + '/' + name + '/*.html') : [],
-            tpljsFiles: hasTpl ? grunt.file.expand('.tmp/' + srcDirectory + '/' + name + '/*.html.js') : [],
-            tplModules: hasTpl ? grunt.file.expand(srcDirectory + '/' + name + '/*.html').map(enquote).map(modifyPath) : [],
+            tplFiles: hasTpl ? grunt.file.expand(srcDirectory + '/' + name + '/**/*.tpl.html') : [],
+            tpljsFiles: hasTpl ? grunt.file.expand('.tmp/' + srcDirectory + '/' + name + '/**/*.html.js') : [],
+            tplModules: hasTpl ? grunt.file.expand(srcDirectory + '/' + name + '/**/*.tpl.html').map(enquote).map(modifyPath) : [],
             dependencies: dependenciesForModule(srcDirectory, name),
             docs: {
                 md: grunt.file.expand(srcDirectory + '/' + name + '/docs/*.md')
@@ -265,12 +269,13 @@ module.exports = function (grunt) {
         //    console.log(modules[0], modules[1]);
         //});
     });
+    grunt.registerTask('default',['html2js','build']);
     // 第1，2个参数分别代表生成目录路径和文件名。第3个参数开始为模块名称，如果模块名称后面的参数是false，则该模块不需要默认模板，否则为需要默认模板
     // 如：grunt default:dist/yczz:fish-yczz:tab:false:popover
     // dist/yczz：代码生成到【dist/yczz】目录下
     // fish-yczz：文件名为【fish-yczz-版本号】
     // tab:false:popover：只需要生成tab和popover模块，其中tab模块不需要模板
-    grunt.registerTask('default', 'build fish', function () {
+    grunt.registerTask('build', 'build fish', function () {
         var _ = grunt.util._;
 
         // 如果有参数，第1个参数为产品名称，从第2个参数开始为模块名称
@@ -298,6 +303,8 @@ module.exports = function (grunt) {
                 filter: 'isDirectory', cwd: '.'
             }, '+(' + grunt.config('srcDirectory') + ')' + '/*').forEach(function (dir) {
                 var modules = dir.split('/');
+                if(modules[1] === 'texteditor')
+                    return false;
                 findModule(modules[1]);
             });
         }
@@ -353,7 +360,7 @@ module.exports = function (grunt) {
         });
         //Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles).concat(tpljsFiles));
-        grunt.task.run(['concat', 'html2js', 'compass:dist', 'concat', 'uglify', 'copy']);
+        grunt.task.run(['concat', 'html2js', 'compass:dist', 'concat', 'ngAnnotate', 'uglify', 'copy']);
 
     });
     //grunt.registerTask('build', 'build fish', ['modules', 'html2js', 'compass:dist', 'concat', 'uglify', 'copy']);

@@ -1,0 +1,13 @@
+<div class="fs-typeahead-container fs-typeahead-bootstrap dropdown" ng-class="{open: $select.open}">
+  <div class="fs-typeahead-match"></div>
+  <input type="text" autocomplete="false" tabindex="-1"
+         aria-expanded="true"
+         aria-label="{{ $select.baseTitle }}"
+         aria-owns="fs-typeahead-choices-{{ $select.generatedId }}"
+         aria-activedescendant="fs-typeahead-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}"
+         class="form-control fs-typeahead-search"
+         placeholder="{{$select.placeholder}}"
+         ng-model="$select.search"
+         ng-show="$select.searchEnabled && $select.open">
+  <div class="fs-typeahead-choices"></div>
+</div>

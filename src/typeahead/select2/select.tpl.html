@@ -1,0 +1,21 @@
+<div class="fs-typeahead-container select2 select2-container"
+     ng-class="{'select2-container-active select2-dropdown-open open': $select.open,
+                'select2-container-disabled': $select.disabled,
+                'select2-container-active': $select.focus,
+                'select2-allowclear': $select.allowClear && !$select.isEmpty()}">
+  <div class="fs-typeahead-match"></div>
+  <div class="fs-typeahead-dropdown select2-drop select2-with-searchbox select2-drop-active"
+       ng-class="{'select2-display-none': !$select.open}">
+    <div class="select2-search" ng-show="$select.searchEnabled">
+      <input type="text" autocomplete="false" autocorrect="false" autocapitalize="off" spellcheck="false"
+       role="combobox"
+       aria-expanded="true"
+       aria-owns="fs-typeahead-choices-{{ $select.generatedId }}"
+       aria-label="{{ $select.baseTitle }}"
+       aria-activedescendant="fs-typeahead-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}"
+             class="fs-typeahead-search select2-input"
+             ng-model="$select.search">
+    </div>
+    <div class="fs-typeahead-choices"></div>
+  </div>
+</div>

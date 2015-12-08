@@ -1,0 +1,11 @@
+<ul class="fs-typeahead-choices fs-typeahead-choices-content select2-results">
+  <li class="fs-typeahead-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }">
+    <div ng-show="$select.choiceGrouped($group)" class="fs-typeahead-choices-group-label select2-result-label" ng-bind="$group.name"></div>
+    <ul role="listbox"
+      id="fs-typeahead-choices-{{ $select.generatedId }}" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }">
+      <li role="option" id="fs-typeahead-choices-row-{{ $select.generatedId }}-{{$index}}" class="fs-typeahead-choices-row" ng-class="{'select2-highlighted': $select.isActive(this), 'select2-disabled': $select.isDisabled(this)}">
+        <div class="select2-result-label fs-typeahead-choices-row-inner"></div>
+      </li>
+    </ul>
+  </li>
+</ul>

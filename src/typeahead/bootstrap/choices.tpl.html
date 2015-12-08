@@ -1,0 +1,12 @@
+<ul class="fs-typeahead-choices fs-typeahead-choices-content fs-typeahead-dropdown dropdown-menu"
+    role="listbox"
+    ng-show="$select.items.length > 0">
+  <li class="fs-typeahead-choices-group" id="fs-typeahead-choices-{{ $select.generatedId }}" >
+    <div class="divider" ng-show="$select.isGrouped && $index > 0"></div>
+    <div ng-show="$select.isGrouped" class="fs-typeahead-choices-group-label dropdown-header" ng-bind="$group.name"></div>
+    <div id="fs-typeahead-choices-row-{{ $select.generatedId }}-{{$index}}" class="fs-typeahead-choices-row"
+         ng-class="{active: $select.isActive(this), disabled: $select.isDisabled(this)}" role="option">
+      <a ng-click="$event.preventDefault()" class="fs-typeahead-choices-row-inner"></a>
+    </div>
+  </li>
+</ul>

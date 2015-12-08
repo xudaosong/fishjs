@@ -1,0 +1,20 @@
+<div class="fs-typeahead-container fs-typeahead-multiple fs-typeahead-bootstrap dropdown form-control" ng-class="{open: $select.open}">
+  <div>
+    <div class="fs-typeahead-match"></div>
+    <input type="text"
+           autocomplete="false" 
+           autocorrect="off" 
+           autocapitalize="off" 
+           spellcheck="false" 
+           class="fs-typeahead-search input-xs"
+           placeholder="{{$selectMultiple.getPlaceholder()}}"
+           ng-disabled="$select.disabled"
+           ng-hide="$select.disabled"
+           ng-click="$select.activate()"
+           ng-model="$select.search"
+           role="combobox"
+           aria-label="{{ $select.baseTitle }}"
+           ondrop="return false;">
+  </div>
+  <div class="fs-typeahead-choices"></div>
+</div>
