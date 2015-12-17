@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/**
+ * Tabs通用组件
+ * @author 许道松
+ */
+
+.nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  @include clearfix;
+
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+    }
+  }
+}
+
+.nav-theme1,.nav-tabs {
+  border-bottom: 1px solid #e3e3e5;
+  border-left: 1px solid #e3e3e5;
+  > li {
+    float: left;
+    border-top: 1px solid #e3e3e5;
+    border-right: 1px solid #e3e3e5;
+    line-height: 32px;
+    background: #f1f1f2;
+    > a {
+      height: 33px;
+      width: 177px;
+      text-align: center;
+      font-size: 16px;
+      padding: 0;
+    }
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: #48647a;
+        font-weight: 700;
+        background: #fff;
+      }
+      ins {
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: -1px;
+        width: 13px;
+        margin-left: -7px;
+        height: 8px;
+        background-image: url($img-path + "qg-sprite.png");
+        background-repeat: no-repeat;
+        background-position: -200px -1px;
+      }
+    }
+  }
+}
+
+.tab-content {
+  > .tab-pane {
+    display: none;
+  }
+  > .active {
+    display: block;
+  }
+}

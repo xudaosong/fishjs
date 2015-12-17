@@ -1,0 +1,1707 @@
+@charset "UTF-8";
+/* Slider */
+/* line 3, ../scss/fish/_slick.scss */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* line 18, ../scss/fish/_slick.scss */
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+/* line 25, ../scss/fish/_slick.scss */
+.slick-list:focus {
+  outline: none;
+}
+/* line 29, ../scss/fish/_slick.scss */
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 34, ../scss/fish/_slick.scss */
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 43, ../scss/fish/_slick.scss */
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+}
+/* line 49, ../scss/fish/_slick.scss */
+.slick-track:before, .slick-track:after {
+  content: "";
+  display: table;
+}
+/* line 55, ../scss/fish/_slick.scss */
+.slick-track:after {
+  clear: both;
+}
+/* line 59, ../scss/fish/_slick.scss */
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+/* line 63, ../scss/fish/_slick.scss */
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none;
+}
+/* line 67, ../scss/fish/_slick.scss */
+[dir="rtl"] .slick-slide {
+  float: right;
+}
+/* line 70, ../scss/fish/_slick.scss */
+.slick-slide img {
+  display: block;
+}
+/* line 73, ../scss/fish/_slick.scss */
+.slick-slide.slick-loading img {
+  display: none;
+}
+/* line 79, ../scss/fish/_slick.scss */
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+/* line 83, ../scss/fish/_slick.scss */
+.slick-initialized .slick-slide {
+  display: block;
+}
+/* line 87, ../scss/fish/_slick.scss */
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+/* line 91, ../scss/fish/_slick.scss */
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+/* line 97, ../scss/fish/_slick.scss */
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+/* line 2, ../scss/fish/_datepicker.scss */
+.datepicker.dropdown-menu {
+  width: 250px;
+}
+/* line 5, ../scss/fish/_datepicker.scss */
+.datepicker.dropdown-menu button {
+  outline: none;
+  border: 0px;
+}
+/* line 9, ../scss/fish/_datepicker.scss */
+.datepicker.dropdown-menu tbody {
+  height: 180px;
+}
+/* line 12, ../scss/fish/_datepicker.scss */
+.datepicker.dropdown-menu tbody button {
+  padding: 6px;
+}
+/* line 16, ../scss/fish/_datepicker.scss */
+.datepicker.dropdown-menu.datepicker-mode-1 tbody button, .datepicker.dropdown-menu.datepicker-mode-2 tbody button {
+  height: 65px;
+}
+
+/* line 2, ../scss/fish/_aside.scss */
+.aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1049;
+  overflow: auto;
+  min-width: 320px;
+  background: white;
+}
+/* line 12, ../scss/fish/_aside.scss */
+.aside:focus {
+  outline: none;
+}
+@media (max-width: 991px) {
+  /* line 2, ../scss/fish/_aside.scss */
+  .aside {
+    min-width: 240px;
+  }
+}
+/* line 19, ../scss/fish/_aside.scss */
+.aside.left {
+  right: auto;
+  left: 0;
+}
+/* line 23, ../scss/fish/_aside.scss */
+.aside.right {
+  right: 0;
+  left: auto;
+}
+/* line 29, ../scss/fish/_aside.scss */
+.aside .aside-dialog .aside-header {
+  border-bottom: 1px solid #e5e5e5;
+  min-height: 16px;
+  padding: 6px 15px;
+  background: #337ab7;
+  color: white;
+}
+/* line 35, ../scss/fish/_aside.scss */
+.aside .aside-dialog .aside-header .close {
+  margin-right: -8px;
+  padding: 4px 8px;
+  color: white;
+  font-size: 25px;
+  opacity: .8;
+}
+/* line 43, ../scss/fish/_aside.scss */
+.aside .aside-dialog .aside-body {
+  position: relative;
+  padding: 15px;
+}
+/* line 47, ../scss/fish/_aside.scss */
+.aside .aside-dialog .aside-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* line 56, ../scss/fish/_aside.scss */
+.aside-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* line 10, ../scss/fish/animation/_collapse.scss */
+.fs-collapse {
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
+  overflow: hidden;
+  opacity: 1;
+}
+/* line 18, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.fs-collapse-add, .fs-collapse.ng-hide-remove, .fs-collapse.ng-move {
+  animation-name: expand;
+}
+/* line 21, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.fs-collapse-remove, .fs-collapse.ng-hide {
+  animation-name: collapse;
+}
+/* line 25, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.ng-enter {
+  visibility: hidden;
+  animation-name: expand;
+  animation-play-state: paused;
+}
+/* line 29, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+}
+/* line 34, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.ng-leave {
+  animation-name: collapse;
+  animation-play-state: paused;
+}
+/* line 37, ../scss/fish/animation/_collapse.scss */
+.fs-collapse.ng-leave.ng-leave-active {
+  animation-play-state: running;
+}
+
+@keyframes expand {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 500px;
+  }
+}
+@keyframes collapse {
+  from {
+    max-height: 500px;
+  }
+  to {
+    max-height: 0px;
+  }
+}
+/* line 73, ../scss/fish/animation/_collapse.scss */
+.panel-collapse.fs-collapse.in-remove {
+  animation-name: collapse;
+  display: block;
+}
+/* line 77, ../scss/fish/animation/_collapse.scss */
+.panel-collapse.fs-collapse.in-add {
+  animation-name: expand;
+}
+
+/* line 8, ../scss/fish/_animation.scss */
+.tab-pane.fs-fade.active-remove {
+  display: none !important;
+}
+/* line 11, ../scss/fish/_animation.scss */
+.tab-pane.fs-fade.active-add {
+  animation-name: fadeIn;
+}
+
+/* line 20, ../scss/fish/_animation.scss */
+.modal-backdrop.fs-fade, .aside-backdrop.fs-fade {
+  background: rgba(0, 0, 0, 0.5);
+  animation-duration: 0.25s;
+}
+/* line 23, ../scss/fish/_animation.scss */
+.modal-backdrop.fs-fade.ng-leave, .aside-backdrop.fs-fade.ng-leave {
+  animation-delay: 0.5s;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade.ng-enter {
+  visibility: hidden;
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade.ng-leave {
+  animation: fadeOut 0.5s;
+  -webkit-animation: fadeOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left.ng-enter {
+  visibility: hidden;
+  animation: fadeInLeft 0.5s;
+  -webkit-animation: fadeInLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left.ng-leave {
+  animation: fadeOutLeft 0.5s;
+  -webkit-animation: fadeOutLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right.ng-enter {
+  visibility: hidden;
+  animation: fadeInRight 0.5s;
+  -webkit-animation: fadeInRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right.ng-leave {
+  animation: fadeOutRight 0.5s;
+  -webkit-animation: fadeOutRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up.ng-enter {
+  visibility: hidden;
+  animation: fadeInUp 0.5s;
+  -webkit-animation: fadeInUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up.ng-leave {
+  animation: fadeOutUp 0.5s;
+  -webkit-animation: fadeOutUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down.ng-enter {
+  visibility: hidden;
+  animation: fadeInDown 0.5s;
+  -webkit-animation: fadeInDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down.ng-leave {
+  animation: fadeOutDown 0.5s;
+  -webkit-animation: fadeOutDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left-big.ng-enter {
+  visibility: hidden;
+  animation: fadeInLeftBig 0.5s;
+  -webkit-animation: fadeInLeftBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left-big.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left-big.ng-leave {
+  animation: fadeOutLeftBig 0.5s;
+  -webkit-animation: fadeOutLeftBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-left-big.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right-big.ng-enter {
+  visibility: hidden;
+  animation: fadeInRightBig 0.5s;
+  -webkit-animation: fadeInRightBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right-big.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right-big.ng-leave {
+  animation: fadeOutRightBig 0.5s;
+  -webkit-animation: fadeOutRightBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-right-big.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up-big.ng-enter {
+  visibility: hidden;
+  animation: fadeInUpBig 0.5s;
+  -webkit-animation: fadeInUpBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up-big.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up-big.ng-leave {
+  animation: fadeOutUpBig 0.5s;
+  -webkit-animation: fadeOutUpBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-up-big.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down-big.ng-enter {
+  visibility: hidden;
+  animation: fadeInDownBig 0.5s;
+  -webkit-animation: fadeInDownBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down-big.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down-big.ng-leave {
+  animation: fadeOutDownBig 0.5s;
+  -webkit-animation: fadeOutDownBig 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-fade-down-big.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-bounce.ng-enter {
+  visibility: hidden;
+  animation: bounceIn 0.5s;
+  -webkit-animation: bounceIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-bounce.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-bounce.ng-leave {
+  animation: bounceOut 0.5s;
+  -webkit-animation: bounceOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-bounce.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-down.ng-enter {
+  visibility: hidden;
+  animation: bounceInDown 0.5s;
+  -webkit-animation: bounceInDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-down.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-down.ng-leave {
+  animation: bounceOutDown 0.5s;
+  -webkit-animation: bounceOutDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-down.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-left.ng-enter {
+  visibility: hidden;
+  animation: bounceInLeft 0.5s;
+  -webkit-animation: bounceInLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-left.ng-leave {
+  animation: bounceOutLeft 0.5s;
+  -webkit-animation: bounceOutLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-right.ng-enter {
+  visibility: hidden;
+  animation: bounceInRight 0.5s;
+  -webkit-animation: bounceInRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-right.ng-leave {
+  animation: bounceOutRight 0.5s;
+  -webkit-animation: bounceOutRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-up.ng-enter {
+  visibility: hidden;
+  animation: bounceInUp 0.5s;
+  -webkit-animation: bounceInUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-up.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-up.ng-leave {
+  animation: bounceOutUp 0.5s;
+  -webkit-animation: bounceOutUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-bounce-up.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-flip-x.ng-enter {
+  visibility: hidden;
+  animation: flipInX 0.5s;
+  -webkit-animation: flipInX 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-flip-x.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-flip-x.ng-leave {
+  animation: flipOutX 0.5s;
+  -webkit-animation: flipOutX 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-flip-x.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-flip-y.ng-enter {
+  visibility: hidden;
+  animation: flipInY 0.5s;
+  -webkit-animation: flipInY 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-flip-y.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-flip-y.ng-leave {
+  animation: flipOutY 0.5s;
+  -webkit-animation: flipOutY 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-flip-y.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-light-speed.ng-enter {
+  visibility: hidden;
+  animation: lightSpeedIn 0.5s;
+  -webkit-animation: lightSpeedIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-light-speed.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-light-speed.ng-leave {
+  animation: lightSpeedOut 0.5s;
+  -webkit-animation: lightSpeedOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-light-speed.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-rotate.ng-enter {
+  visibility: hidden;
+  animation: rotateIn 0.5s;
+  -webkit-animation: rotateIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-rotate.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-rotate.ng-leave {
+  animation: rotateOut 0.5s;
+  -webkit-animation: rotateOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-rotate.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-left.ng-enter {
+  visibility: hidden;
+  animation: rotateInDownLeft 0.5s;
+  -webkit-animation: rotateInDownLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-left.ng-leave {
+  animation: rotateOutDownLeft 0.5s;
+  -webkit-animation: rotateOutDownLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-right.ng-enter {
+  visibility: hidden;
+  animation: rotateInDownRight 0.5s;
+  -webkit-animation: rotateInDownRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-right.ng-leave {
+  animation: rotateOutDownRight 0.5s;
+  -webkit-animation: rotateOutDownRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-down-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-left.ng-enter {
+  visibility: hidden;
+  animation: rotateInUpLeft 0.5s;
+  -webkit-animation: rotateInUpLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-left.ng-leave {
+  animation: rotateOutUpLeft 0.5s;
+  -webkit-animation: rotateOutUpLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-right.ng-enter {
+  visibility: hidden;
+  animation: rotateInUpRight 0.5s;
+  -webkit-animation: rotateInUpRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-right.ng-leave {
+  animation: rotateOutUpRight 0.5s;
+  -webkit-animation: rotateOutUpRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-rotate-up-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-slide-up.ng-enter {
+  visibility: hidden;
+  animation: slideInUp 0.5s;
+  -webkit-animation: slideInUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-slide-up.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-slide-up.ng-leave {
+  animation: slideOutUp 0.5s;
+  -webkit-animation: slideOutUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-slide-up.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-slide-down.ng-enter {
+  visibility: hidden;
+  animation: slideInDown 0.5s;
+  -webkit-animation: slideInDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-slide-down.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-slide-down.ng-leave {
+  animation: slideOutDown 0.5s;
+  -webkit-animation: slideOutDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-slide-down.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-slide-left.ng-enter {
+  visibility: hidden;
+  animation: slideInLeft 0.5s;
+  -webkit-animation: slideInLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-slide-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-slide-left.ng-leave {
+  animation: slideOutLeft 0.5s;
+  -webkit-animation: slideOutLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-slide-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-slide-right.ng-enter {
+  visibility: hidden;
+  animation: slideInRight 0.5s;
+  -webkit-animation: slideInRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-slide-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-slide-right.ng-leave {
+  animation: slideOutRight 0.5s;
+  -webkit-animation: slideOutRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-slide-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-zoom.ng-enter {
+  visibility: hidden;
+  animation: zoomIn 0.5s;
+  -webkit-animation: zoomIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-zoom.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-zoom.ng-leave {
+  animation: zoomOut 0.5s;
+  -webkit-animation: zoomOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-zoom.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-down.ng-enter {
+  visibility: hidden;
+  animation: zoomInDown 0.5s;
+  -webkit-animation: zoomInDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-down.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-down.ng-leave {
+  animation: zoomOutDown 0.5s;
+  -webkit-animation: zoomOutDown 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-down.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-left.ng-enter {
+  visibility: hidden;
+  animation: zoomInLeft 0.5s;
+  -webkit-animation: zoomInLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-left.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-left.ng-leave {
+  animation: zoomOutLeft 0.5s;
+  -webkit-animation: zoomOutLeft 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-left.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-right.ng-enter {
+  visibility: hidden;
+  animation: zoomInRight 0.5s;
+  -webkit-animation: zoomInRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-right.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-right.ng-leave {
+  animation: zoomOutRight 0.5s;
+  -webkit-animation: zoomOutRight 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-right.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-up.ng-enter {
+  visibility: hidden;
+  animation: zoomInUp 0.5s;
+  -webkit-animation: zoomInUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-up.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-up.ng-leave {
+  animation: zoomOutUp 0.5s;
+  -webkit-animation: zoomOutUp 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-zoom-up.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/* line 3, ../scss/fish/mixins/_animation.scss */
+.fs-roll.ng-enter {
+  visibility: hidden;
+  animation: rollIn 0.5s;
+  -webkit-animation: rollIn 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 9, ../scss/fish/mixins/_animation.scss */
+.fs-roll.ng-enter.ng-enter-active {
+  visibility: visible;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+/* line 15, ../scss/fish/mixins/_animation.scss */
+.fs-roll.ng-leave {
+  animation: rollOut 0.5s;
+  -webkit-animation: rollOut 0.5s;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
+/* line 20, ../scss/fish/mixins/_animation.scss */
+.fs-roll.ng-leave.ng-leave-active {
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
+}
+
+/**
+ * 该css来自ui-select组件
+ * 1. 替换ui-select为fs-typeahead
+ */
+/* Style when highlighting a search. */
+/* line 7, ../scss/fish/_typeahead.scss */
+.fs-typeahead-highlight {
+  font-weight: bold;
+}
+
+/* line 11, ../scss/fish/_typeahead.scss */
+.fs-typeahead-offscreen {
+  clip: rect(0 0 0 0) !important;
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  outline: 0 !important;
+  left: 0px !important;
+  top: 0px !important;
+}
+
+/* line 26, ../scss/fish/_typeahead.scss */
+.fs-typeahead-choices-row:hover {
+  background-color: #f5f5f5;
+}
+
+/* Select2 theme */
+/* Mark invalid Select2 */
+/* line 33, ../scss/fish/_typeahead.scss */
+.ng-dirty.ng-invalid > a.select2-choice {
+  border-color: #D44950;
+}
+
+/* line 37, ../scss/fish/_typeahead.scss */
+.select2-result-single {
+  padding-left: 0;
+}
+
+/* line 41, ../scss/fish/_typeahead.scss */
+.select2-locked > .select2-search-choice-close {
+  display: none;
+}
+
+/* line 45, ../scss/fish/_typeahead.scss */
+.select-locked > .fs-typeahead-match-close {
+  display: none;
+}
+
+/* line 49, ../scss/fish/_typeahead.scss */
+body > .select2-container.open {
+  z-index: 9999;
+  /* The z-index Select2 applies to the select2-drop */
+}
+
+/* Handle up direction Select2 */
+/* line 54, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="select2"].direction-up .fs-typeahead-match {
+  border-radius: 4px;
+  /* FIXME hardcoded value :-/ */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 59, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="select2"].direction-up .fs-typeahead-dropdown {
+  border-radius: 4px;
+  /* FIXME hardcoded value :-/ */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-width: 1px;
+  /* FIXME hardcoded value :-/ */
+  border-top-style: solid;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+  margin-top: -4px;
+  /* FIXME hardcoded value :-/ */
+}
+
+/* line 71, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="select2"].direction-up .fs-typeahead-dropdown .select2-search {
+  margin-top: 4px;
+  /* FIXME hardcoded value :-/ */
+}
+
+/* line 74, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="select2"].direction-up.select2-dropdown-open .fs-typeahead-match {
+  border-bottom-color: #5897fb;
+}
+
+/* Selectize theme */
+/* Helper class to show styles when focus */
+/* line 81, ../scss/fish/_typeahead.scss */
+.selectize-input.selectize-focus {
+  border-color: #007FBB !important;
+}
+
+/* Fix input width for Selectize theme */
+/* line 86, ../scss/fish/_typeahead.scss */
+.selectize-control > .selectize-input > input {
+  width: 100%;
+}
+
+/* Fix dropdown width for Selectize theme */
+/* line 91, ../scss/fish/_typeahead.scss */
+.selectize-control > .selectize-dropdown {
+  width: 100%;
+}
+
+/* Mark invalid Selectize */
+/* line 96, ../scss/fish/_typeahead.scss */
+.ng-dirty.ng-invalid > div.selectize-input {
+  border-color: #D44950;
+}
+
+/* Handle up direction Selectize */
+/* line 101, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="selectize"].direction-up .fs-typeahead-dropdown {
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+  margin-top: -2px;
+  /* FIXME hardcoded value :-/ */
+}
+
+/* Bootstrap theme */
+/* Helper class to show styles when focus */
+/* line 110, ../scss/fish/_typeahead.scss */
+.btn-default-focus {
+  color: #333;
+  background-color: #EBEBEB;
+  border-color: #ADADAD;
+  text-decoration: none;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* line 120, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-toggle {
+  position: relative;
+}
+
+/* line 124, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-toggle > .caret {
+  position: absolute;
+  height: 10px;
+  top: 50%;
+  right: 10px;
+  margin-top: -2px;
+}
+
+/* Fix Bootstrap dropdown position when inside a input-group */
+/* line 133, ../scss/fish/_typeahead.scss */
+.input-group > .fs-typeahead-bootstrap.dropdown {
+  /* Instead of relative */
+  position: static;
+}
+
+/* line 138, ../scss/fish/_typeahead.scss */
+.input-group > .fs-typeahead-bootstrap > input.fs-typeahead-search.form-control {
+  border-radius: 4px;
+  /* FIXME hardcoded value :-/ */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 143, ../scss/fish/_typeahead.scss */
+.input-group > .fs-typeahead-bootstrap > input.fs-typeahead-search.form-control.direction-up {
+  border-radius: 4px !important;
+  /* FIXME hardcoded value :-/ */
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* line 149, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap > .fs-typeahead-match > .btn {
+  /* Instead of center because of .btn */
+  text-align: left !important;
+}
+
+/* line 154, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap > .fs-typeahead-match > .caret {
+  position: absolute;
+  top: 45%;
+  right: 15px;
+}
+
+/* See Scrollable Menu with Bootstrap 3 http://stackoverflow.com/questions/19227496 */
+/* line 161, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap > .fs-typeahead-choices {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+  margin-top: -1px;
+}
+
+/* line 169, ../scss/fish/_typeahead.scss */
+body > .fs-typeahead-bootstrap.open {
+  z-index: 1000;
+  /* Standard Bootstrap dropdown z-index */
+}
+
+/* line 173, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple.fs-typeahead-bootstrap {
+  height: auto;
+  padding: 3px 3px 0 3px;
+}
+
+/* line 178, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple.fs-typeahead-bootstrap input.fs-typeahead-search {
+  background-color: transparent !important;
+  /* To prevent double background when disabled */
+  border: none;
+  outline: none;
+  height: 1.666666em;
+  margin-bottom: 3px;
+}
+
+/* line 186, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple.fs-typeahead-bootstrap .fs-typeahead-match .close {
+  font-size: 1.6em;
+  line-height: 0.75;
+}
+
+/* line 191, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple.fs-typeahead-bootstrap .fs-typeahead-match-item {
+  outline: 0;
+  margin: 0 3px 3px 0;
+}
+
+/* line 196, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple .fs-typeahead-match-item {
+  position: relative;
+}
+
+/* line 200, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple .fs-typeahead-match-item.dropping-before:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  margin-right: 2px;
+  border-left: 1px solid #428bca;
+}
+
+/* line 210, ../scss/fish/_typeahead.scss */
+.fs-typeahead-multiple .fs-typeahead-match-item.dropping-after:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  margin-left: 2px;
+  border-right: 1px solid #428bca;
+}
+
+/* line 220, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-choices-row > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* line 230, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-choices-row > a:hover, .fs-typeahead-bootstrap .fs-typeahead-choices-row > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #f5f5f5;
+}
+
+/* line 236, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-choices-row.active > a {
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #428bca;
+}
+
+/* line 243, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap .fs-typeahead-choices-row.disabled > a,
+.fs-typeahead-bootstrap .fs-typeahead-choices-row.active.disabled > a {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+}
+
+/* fix hide/show angular animation */
+/* line 251, ../scss/fish/_typeahead.scss */
+.fs-typeahead-match.ng-hide-add,
+.fs-typeahead-search.ng-hide-add {
+  display: none !important;
+}
+
+/* Mark invalid Bootstrap */
+/* line 257, ../scss/fish/_typeahead.scss */
+.fs-typeahead-bootstrap.ng-dirty.ng-invalid > button.btn.fs-typeahead-match {
+  border-color: #D44950;
+}
+
+/* Handle up direction Bootstrap */
+/* line 262, ../scss/fish/_typeahead.scss */
+.fs-typeahead-container[theme="bootstrap"].direction-up .fs-typeahead-dropdown {
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* line 5, ../scss/fish/_table.scss */
+.fs-table th {
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 14, ../scss/fish/_table.scss */
+.fs-table th.sortable {
+  cursor: pointer;
+}
+/* line 17, ../scss/fish/_table.scss */
+.fs-table th.sortable .sort-indicator {
+  padding-right: 18px;
+  position: relative;
+}
+/* line 21, ../scss/fish/_table.scss */
+.fs-table th.sortable .sort-indicator:after, .fs-table th.sortable .sort-indicator:before {
+  content: "";
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #000 transparent;
+  visibility: visible;
+  right: 5px;
+  top: 50%;
+  position: absolute;
+  opacity: .3;
+  margin-top: -4px;
+}
+/* line 33, ../scss/fish/_table.scss */
+.fs-table th.sortable .sort-indicator:before {
+  margin-top: 2px;
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+}
+/* line 42, ../scss/fish/_table.scss */
+.fs-table th.sortable .sort-indicator:hover:after, .fs-table th.sortable .sort-indicator:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+/* line 46, ../scss/fish/_table.scss */
+.fs-table th.sortable.sort-desc, .fs-table th.sortable.sort-asc {
+  background-color: rgba(141, 192, 219, 0.25);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+/* line 50, ../scss/fish/_table.scss */
+.fs-table th.sortable.sort-desc .sort-indicator:after, .fs-table th.sortable.sort-asc .sort-indicator:after {
+  margin-top: -2px;
+}
+/* line 53, ../scss/fish/_table.scss */
+.fs-table th.sortable.sort-desc .sort-indicator:before, .fs-table th.sortable.sort-asc .sort-indicator:before {
+  visibility: hidden;
+}
+/* line 57, ../scss/fish/_table.scss */
+.fs-table th.sortable.sort-asc .sort-indicator:after, .fs-table th.sortable.sort-asc .sort-indicator:hover:after {
+  visibility: visible;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+/* line 64, ../scss/fish/_table.scss */
+.fs-table th.sortable.sort-desc .sort-indicator:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+/* line 80, ../scss/fish/_table.scss */
+.fs-table th.filter .input-filter {
+  margin: 0;
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 92, ../scss/fish/_table.scss */
+.fs-table-pagination {
+  margin-top: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  /* line 97, ../scss/fish/_table.scss */
+  .fs-table-responsive {
+    border-bottom: 1px solid #999;
+  }
+  /* line 99, ../scss/fish/_table.scss */
+  .fs-table-responsive tr {
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+  }
+  /* line 104, ../scss/fish/_table.scss */
+  .fs-table-responsive td:before {
+    position: absolute;
+    padding: 8px;
+    left: 0;
+    top: 0;
+    width: 50%;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  /* line 116, ../scss/fish/_table.scss */
+  .fs-table-responsive thead tr th {
+    text-align: left;
+  }
+  /* line 120, ../scss/fish/_table.scss */
+  .fs-table-responsive thead tr.fs-table-filters th {
+    padding: 0;
+  }
+  /* line 123, ../scss/fish/_table.scss */
+  .fs-table-responsive thead tr.fs-table-filters th form > div {
+    padding: 8px;
+  }
+  /* line 130, ../scss/fish/_table.scss */
+  .fs-table-responsive td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+  /* line 138, ../scss/fish/_table.scss */
+  .fs-table-responsive td:before {
+    content: attr(data-title-text);
+  }
+  /* line 142, ../scss/fish/_table.scss */
+  .fs-table-responsive, .fs-table-responsive thead, .fs-table-responsive tbody, .fs-table-responsive th, .fs-table-responsive td, .fs-table-responsive tr {
+    display: block;
+  }
+}
+/* line 152, ../scss/fish/_table.scss */
+.filter:before,
+.filter:after {
+  display: table;
+  content: " ";
+}
+
+/* line 157, ../scss/fish/_table.scss */
+.filter:after {
+  clear: both;
+}
+
+/* line 161, ../scss/fish/_table.scss */
+.filter > .filter-cell {
+  float: left;
+  box-sizing: border-box;
+}
+
+/* line 166, ../scss/fish/_table.scss */
+.filter-horizontal > .filter-cell {
+  padding: 0 2px;
+}
+
+/* line 170, ../scss/fish/_table.scss */
+.filter-horizontal > .filter-cell:first-child {
+  padding-left: 0;
+}
+
+/* line 175, ../scss/fish/_table.scss */
+.filter-horizontal > .filter-cell:last-child, .filter-horizontal > .filter-cell.last {
+  padding-right: 0;
+}
+
+/* line 180, ../scss/fish/_table.scss */
+.s12 {
+  width: 100%;
+}
+
+/* line 183, ../scss/fish/_table.scss */
+.s11 {
+  width: 91.66666666666666%;
+}
+
+/* line 186, ../scss/fish/_table.scss */
+.s10 {
+  width: 83.33333333333334%;
+}
+
+/* line 189, ../scss/fish/_table.scss */
+.s9 {
+  width: 75%;
+}
+
+/* line 192, ../scss/fish/_table.scss */
+.s8 {
+  width: 66.66666666666666%;
+}
+
+/* line 195, ../scss/fish/_table.scss */
+.s7 {
+  width: 58.333333333333336%;
+}
+
+/* line 198, ../scss/fish/_table.scss */
+.s6 {
+  width: 50%;
+}
+
+/* line 201, ../scss/fish/_table.scss */
+.s5 {
+  width: 41.66666666666667%;
+}
+
+/* line 204, ../scss/fish/_table.scss */
+.s4 {
+  width: 33.33333333333333%;
+}
+
+/* line 207, ../scss/fish/_table.scss */
+.s3 {
+  width: 25%;
+}
+
+/* line 210, ../scss/fish/_table.scss */
+.s2 {
+  width: 16.666666666666664%;
+}
+
+/* line 213, ../scss/fish/_table.scss */
+.s1 {
+  width: 8.333333333333332%;
+}
+
+@media all and (max-width: 468px) {
+  /* line 218, ../scss/fish/_table.scss */
+  .s12, .s11, .s10, .s9, .s8, .s7, .s6, .s5, .s4, .s3, .s2, .s1 {
+    width: 100%;
+  }
+
+  /* line 221, ../scss/fish/_table.scss */
+  .filter > .filter-cell {
+    padding: 0px;
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "fishjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "fishjs",
   "main": "fish.js",
   "scripts": {
@@ -43,6 +43,7 @@
     "grunt-usemin": "^3.0.0",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^3.1.0",
+    "ng-table": "^0.5.4",
     "node-markdown": "^0.1.1",
     "time-grunt": "^1.0.0"
   }

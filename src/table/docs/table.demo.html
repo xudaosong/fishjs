@@ -1,0 +1,25 @@
+<div class="bs-docs-section" ng-controller="TableDemoCtrl as vm">
+    <table fs-table-dynamic="vm.tableParams with vm.cols" class="table table-condensed table-bordered table-striped" >
+        <tr ng-repeat="row in $data">
+            <td ng-repeat="col in $columns">{{row[col.field]}}</td>
+        </tr>
+    </table>
+    <table fs-table-dynamic="vm.groupTableParams with vm.groupCols" class="table table-condensed table-bordered table-hover">
+        <colgroup>
+            <col width="50%" />
+            <col width="20%" />
+            <col width="30%" />
+        </colgroup>
+        <tr class="fs-table-group" ng-repeat-start="group in $groups">
+            <td colspan="3">
+                <a href="javascript:;" ng-click="group.$hideRows = !group.$hideRows">
+                    <span class="fa" ng-class="{ 'fa-chevron-right': group.$hideRows, 'fa-chevron-down': !group.$hideRows }"></span>
+                    <strong>{{ group.value }}</strong>
+                </a>
+            </td>
+        </tr>
+        <tr ng-hide="group.$hideRows" ng-repeat="user in group.data" ng-repeat-end>
+            <td ng-repeat="col in $columns">{{user[col.field]}}</td>
+        </tr>
+    </table>
+</div>
