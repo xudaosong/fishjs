@@ -1,0 +1,21 @@
+<table fs-table-dynamic="tableParams with cols" class="table table-striped table-bordered table-hover">
+    <tr ng-repeat="row in $data">
+        <td ng-repeat="col in $columns" ng-switch="col.field">
+            <input ng-switch-when="selector" type="checkbox" ng-model="checkboxes.items[row.courseid]"/>
+
+            <div ng-switch-when="operation" class="operation">
+                <button ng-repeat="button in col.buttons" class="btn btn-primary btn-xs" ng-class="button.css" ng-click="button.onclick(row)">
+                    <i class="fa" ng-if="button.icon" ng-class="button.icon"></i>{{button.text}}
+                </button>
+                <!-- <button ng-switch-when="modify" class="btn btn-primary btn-xs" ng-click="vm.showDialog(row)">
+                     <i class="fa fa-pencil-square-o"></i>修改
+                 </button>-->
+            </div>
+            <div ng-switch-default>
+                <div ng-if="!!col.getValue" ng-bind="col.getValue(this,row)"></div>
+                <div ng-if="!!col.render" ng-bind-html="col.render(row,this)"></div>
+                <div ng-if="!col.getValue && !col.render">{{row[col.field]}}</div>
+            </div>
+        </td>
+    </tr>
+</table>
